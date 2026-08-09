@@ -19,6 +19,10 @@ include = [
     "Cargo.toml",
 ]
 
+[features]
+# Test-only allocator instrumentation. Never enable for timing benchmarks.
+test-allocation-counting = []
+
 [dependencies]
 base64 = "0.22.1"
 bincode = { version = "2", features = ["serde"] }
