@@ -98,6 +98,8 @@ mod terminal_effects;
 mod terminal_modes;
 mod terminal_notify;
 mod terminal_theme;
+#[cfg(all(test, feature = "test-allocation-counting"))]
+mod test_alloc;
 mod ui;
 mod update;
 mod workspace;

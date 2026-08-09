@@ -33,7 +33,7 @@ use unicode_width::UnicodeWidthStr;
 
 use crate::protocol::{underline_style_from_modifier, CellData, FrameData};
 
-const REVERSED_MODIFIER: u16 = 1 << 6;
+const REVERSED_MODIFIER: u16 = ratatui::style::Modifier::REVERSED.bits();
 const SYNC_OUTPUT_END: &[u8] = b"\x1b[?2026l";
 
 pub(crate) fn final_sync_output_end(bytes: &[u8]) -> Option<usize> {
@@ -223,149 +223,208 @@ fn compute_prof_blit_stats(
 }
 
 // ---------------------------------------------------------------------------
-// Color → escape sequence
+// Cell style → SGR
 // ---------------------------------------------------------------------------
 
-/// Converts a packed u32 color to an SGR escape sequence fragment.
-///
-/// Returns a string like `38;5;123` (indexed) or `38;2;255;128;64` (RGB)
-/// or `39` (reset), without the leading `\x1b[` or trailing `m`.
-fn color_to_sgr_fg(val: u32) -> String {
-    match val >> 24 {
-        0x00 => match val & 0xFF {
-            0x00 => "39".to_owned(), // Reset
-            0x01 => "30".to_owned(), // Black
-            0x02 => "31".to_owned(), // Red
-            0x03 => "32".to_owned(), // Green
-            0x04 => "33".to_owned(), // Yellow
-            0x05 => "34".to_owned(), // Blue
-            0x06 => "35".to_owned(), // Magenta
-            0x07 => "36".to_owned(), // Cyan
-            0x08 => "37".to_owned(), // Gray (light gray)
-            0x09 => "90".to_owned(), // DarkGray
-            0x0A => "91".to_owned(), // LightRed
-            0x0B => "92".to_owned(), // LightGreen
-            0x0C => "93".to_owned(), // LightYellow
-            0x0D => "94".to_owned(), // LightBlue
-            0x0E => "95".to_owned(), // LightMagenta
-            0x0F => "96".to_owned(), // LightCyan
-            0x10 => "97".to_owned(), // White
-            _ => "39".to_owned(),    // Unknown → Reset
-        },
-        0x01 => format!("38;5;{}", val & 0xFF), // Indexed
-        0x02 => {
-            // RGB
-            let r = (val >> 16) & 0xFF;
-            let g = (val >> 8) & 0xFF;
-            let b = val & 0xFF;
-            format!("38;2;{r};{g};{b}")
+const BOLD_MODIFIER: u16 = ratatui::style::Modifier::BOLD.bits();
+const DIM_MODIFIER: u16 = ratatui::style::Modifier::DIM.bits();
+const ITALIC_MODIFIER: u16 = ratatui::style::Modifier::ITALIC.bits();
+const UNDERLINED_MODIFIER: u16 = ratatui::style::Modifier::UNDERLINED.bits();
+const SLOW_BLINK_MODIFIER: u16 = ratatui::style::Modifier::SLOW_BLINK.bits();
+const RAPID_BLINK_MODIFIER: u16 = ratatui::style::Modifier::RAPID_BLINK.bits();
+const HIDDEN_MODIFIER: u16 = ratatui::style::Modifier::HIDDEN.bits();
+const CROSSED_OUT_MODIFIER: u16 = ratatui::style::Modifier::CROSSED_OUT.bits();
+const SGR_MODIFIER_MASK: u16 = BOLD_MODIFIER
+    | DIM_MODIFIER
+    | ITALIC_MODIFIER
+    | UNDERLINED_MODIFIER
+    | SLOW_BLINK_MODIFIER
+    | RAPID_BLINK_MODIFIER
+    | REVERSED_MODIFIER
+    | HIDDEN_MODIFIER
+    | CROSSED_OUT_MODIFIER;
+const UNDERLINE_STYLE_SHIFT: u16 = 12;
+
+// Keep this Reset-excluding order aligned with protocol::wire::color_to_u32.
+const FOREGROUND_NAMED_CODES: [&[u8]; 16] = [
+    b";30", b";31", b";32", b";33", b";34", b";35", b";36", b";37", b";90", b";91", b";92", b";93",
+    b";94", b";95", b";96", b";97",
+];
+const BACKGROUND_NAMED_CODES: [&[u8]; 16] = [
+    b";40", b";41", b";42", b";43", b";44", b";45", b";46", b";47", b";100", b";101", b";102",
+    b";103", b";104", b";105", b";106", b";107",
+];
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+enum SgrColour {
+    Reset,
+    Named(u8),
+    Indexed(u8),
+    Rgb(u8, u8, u8),
+}
+
+impl SgrColour {
+    fn from_packed(value: u32) -> Self {
+        match value >> 24 {
+            0x00 => match value & 0xFF {
+                0 => Self::Reset,
+                named @ 1..=16 => Self::Named((named - 1) as u8),
+                _ => Self::Reset,
+            },
+            0x01 => Self::Indexed(value as u8),
+            0x02 => Self::Rgb((value >> 16) as u8, (value >> 8) as u8, value as u8),
+            _ => Self::Reset,
         }
-        _ => "39".to_owned(), // Unknown → Reset
     }
 }
 
-/// Converts a packed u32 color to a background SGR fragment.
-fn color_to_sgr_bg(val: u32) -> String {
-    match val >> 24 {
-        0x00 => match val & 0xFF {
-            0x00 => "49".to_owned(),  // Reset
-            0x01 => "40".to_owned(),  // Black
-            0x02 => "41".to_owned(),  // Red
-            0x03 => "42".to_owned(),  // Green
-            0x04 => "43".to_owned(),  // Yellow
-            0x05 => "44".to_owned(),  // Blue
-            0x06 => "45".to_owned(),  // Magenta
-            0x07 => "46".to_owned(),  // Cyan
-            0x08 => "47".to_owned(),  // Gray (light gray)
-            0x09 => "100".to_owned(), // DarkGray
-            0x0A => "101".to_owned(), // LightRed
-            0x0B => "102".to_owned(), // LightGreen
-            0x0C => "103".to_owned(), // LightYellow
-            0x0D => "104".to_owned(), // LightBlue
-            0x0E => "105".to_owned(), // LightMagenta
-            0x0F => "106".to_owned(), // LightCyan
-            0x10 => "107".to_owned(), // White
-            _ => "49".to_owned(),     // Unknown → Reset
-        },
-        0x01 => format!("48;5;{}", val & 0xFF), // Indexed
-        0x02 => {
-            let r = (val >> 16) & 0xFF;
-            let g = (val >> 8) & 0xFF;
-            let b = val & 0xFF;
-            format!("48;2;{r};{g};{b}")
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+struct SgrModifier(u16);
+
+impl SgrModifier {
+    fn canonical(value: u16) -> Self {
+        let mut canonical = value & SGR_MODIFIER_MASK;
+        if canonical & UNDERLINED_MODIFIER != 0 {
+            let underline_style = underline_style_from_modifier(value);
+            if matches!(underline_style, 2..=5) {
+                canonical |= u16::from(underline_style) << UNDERLINE_STYLE_SHIFT;
+            }
         }
-        _ => "49".to_owned(),
+        Self(canonical)
+    }
+
+    fn contains(self, modifier: u16) -> bool {
+        self.0 & modifier != 0
     }
 }
 
-// ---------------------------------------------------------------------------
-// Modifier → SGR
-// ---------------------------------------------------------------------------
-
-/// Converts a u16 modifier bitmask to SGR escape sequence fragments.
-///
-/// Returns a Vec of SGR parameter strings (e.g., "1" for bold, "3" for italic).
-fn modifier_to_sgr_parts(val: u16) -> Vec<&'static str> {
-    let mut parts = Vec::new();
-
-    // ratatui::Modifier bits (from bitflags)
-    const BOLD: u16 = 1 << 0; // 0x01
-    const DIM: u16 = 1 << 1; // 0x02
-    const ITALIC: u16 = 1 << 2; // 0x04
-    const UNDERLINED: u16 = 1 << 3; // 0x08
-    const SLOW_BLINK: u16 = 1 << 4; // 0x10
-    const RAPID_BLINK: u16 = 1 << 5; // 0x20
-    const HIDDEN: u16 = 1 << 7; // 0x80
-    const CROSSED_OUT: u16 = 1 << 8; // 0x100
-
-    if val & BOLD != 0 {
-        parts.push("1");
-    }
-    if val & DIM != 0 {
-        parts.push("2");
-    }
-    if val & ITALIC != 0 {
-        parts.push("3");
-    }
-    if val & UNDERLINED != 0 {
-        parts.push(match underline_style_from_modifier(val) {
-            2 => "4:2",
-            3 => "4:3",
-            4 => "4:4",
-            5 => "4:5",
-            _ => "4",
-        });
-    }
-    if val & SLOW_BLINK != 0 {
-        parts.push("5");
-    }
-    if val & RAPID_BLINK != 0 {
-        parts.push("6");
-    }
-    if val & REVERSED_MODIFIER != 0 {
-        parts.push("7");
-    }
-    if val & HIDDEN != 0 {
-        parts.push("8");
-    }
-    if val & CROSSED_OUT != 0 {
-        parts.push("9");
-    }
-
-    parts
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+struct SgrStyleKey {
+    foreground: SgrColour,
+    background: SgrColour,
+    modifier: SgrModifier,
 }
 
-/// Builds a complete SGR escape sequence for a cell's style.
-fn build_sgr(fg: u32, bg: u32, modifier: u16) -> String {
-    let mut parts = vec!["0".to_owned()];
-    parts.extend(
-        modifier_to_sgr_parts(modifier)
-            .into_iter()
-            .map(str::to_owned),
-    );
-    parts.push(color_to_sgr_fg(fg));
-    parts.push(color_to_sgr_bg(bg));
-    format!("\x1b[{}m", parts.join(";"))
+impl SgrStyleKey {
+    fn from_cell(cell: &CellData) -> Self {
+        Self {
+            foreground: SgrColour::from_packed(cell.fg),
+            background: SgrColour::from_packed(cell.bg),
+            modifier: SgrModifier::canonical(cell.modifier),
+        }
+    }
+}
+
+fn write_sgr(writer: &mut impl Write, style: SgrStyleKey) {
+    let _ = writer.write_all(b"\x1b[0");
+    write_sgr_modifiers(writer, style.modifier);
+    write_sgr_colour(writer, style.foreground, SgrChannel::Foreground);
+    write_sgr_colour(writer, style.background, SgrChannel::Background);
+    let _ = writer.write_all(b"m");
+}
+
+fn write_sgr_modifiers(writer: &mut impl Write, modifier: SgrModifier) {
+    // Preserve legacy emission order: intensity, italic, underline, blink,
+    // reverse, hidden, then crossed-out.
+
+    for (flag, code) in [
+        (BOLD_MODIFIER, b";1".as_slice()),
+        (DIM_MODIFIER, b";2".as_slice()),
+        (ITALIC_MODIFIER, b";3".as_slice()),
+    ] {
+        if modifier.contains(flag) {
+            let _ = writer.write_all(code);
+        }
+    }
+    if modifier.contains(UNDERLINED_MODIFIER) {
+        let code = match underline_style_from_modifier(modifier.0) {
+            2 => b";4:2".as_slice(),
+            3 => b";4:3".as_slice(),
+            4 => b";4:4".as_slice(),
+            5 => b";4:5".as_slice(),
+            _ => b";4".as_slice(),
+        };
+        let _ = writer.write_all(code);
+    }
+    for (flag, code) in [
+        (SLOW_BLINK_MODIFIER, b";5".as_slice()),
+        (RAPID_BLINK_MODIFIER, b";6".as_slice()),
+        (REVERSED_MODIFIER, b";7".as_slice()),
+        (HIDDEN_MODIFIER, b";8".as_slice()),
+        (CROSSED_OUT_MODIFIER, b";9".as_slice()),
+    ] {
+        if modifier.contains(flag) {
+            let _ = writer.write_all(code);
+        }
+    }
+}
+
+#[derive(Clone, Copy)]
+enum SgrChannel {
+    Foreground,
+    Background,
+}
+
+fn write_sgr_colour(writer: &mut impl Write, colour: SgrColour, channel: SgrChannel) {
+    match colour {
+        SgrColour::Reset => {
+            let _ = writer.write_all(match channel {
+                SgrChannel::Foreground => b";39",
+                SgrChannel::Background => b";49",
+            });
+        }
+        SgrColour::Named(index) => {
+            let codes = match channel {
+                SgrChannel::Foreground => &FOREGROUND_NAMED_CODES,
+                SgrChannel::Background => &BACKGROUND_NAMED_CODES,
+            };
+            let _ = writer.write_all(codes[usize::from(index)]);
+        }
+        SgrColour::Indexed(index) => {
+            let prefix = match channel {
+                SgrChannel::Foreground => b";38;5;",
+                SgrChannel::Background => b";48;5;",
+            };
+            let _ = writer.write_all(prefix);
+            write_u8_decimal(writer, index);
+        }
+        SgrColour::Rgb(red, green, blue) => {
+            let prefix = match channel {
+                SgrChannel::Foreground => b";38;2;",
+                SgrChannel::Background => b";48;2;",
+            };
+            let _ = writer.write_all(prefix);
+            write_u8_decimal(writer, red);
+            let _ = writer.write_all(b";");
+            write_u8_decimal(writer, green);
+            let _ = writer.write_all(b";");
+            write_u8_decimal(writer, blue);
+        }
+    }
+}
+
+const DECIMAL_PAIRS: [[u8; 2]; 100] = decimal_pairs();
+
+const fn decimal_pairs() -> [[u8; 2]; 100] {
+    let mut pairs = [[0; 2]; 100];
+    let mut value = 0;
+    while value < pairs.len() {
+        pairs[value] = [b'0' + (value / 10) as u8, b'0' + (value % 10) as u8];
+        value += 1;
+    }
+    pairs
+}
+
+fn write_u8_decimal(writer: &mut impl Write, value: u8) {
+    if value >= 100 {
+        let pair = DECIMAL_PAIRS[usize::from(value % 100)];
+        let digits = [b'0' + value / 100, pair[0], pair[1]];
+        let _ = writer.write_all(&digits);
+    } else if value >= 10 {
+        let _ = writer.write_all(&DECIMAL_PAIRS[usize::from(value)]);
+    } else {
+        let _ = writer.write_all(&[b'0' + value]);
+    }
 }
 
 // ---------------------------------------------------------------------------
@@ -522,6 +581,9 @@ fn repeat_ime_anchor_after_sync() -> bool {
 
 /// Writes all cells in the frame (full redraw).
 fn cell_width(cell: &CellData) -> usize {
+    if cell.symbol.len() == 1 && !cell.symbol.as_bytes()[0].is_ascii_control() {
+        return 1;
+    }
     if is_halfwidth_katakana_voiced_grapheme(&cell.symbol) {
         return 2;
     }
@@ -653,8 +715,7 @@ fn write_all_cells(writer: &mut impl Write, frame: &FrameData) {
             let _ = write!(writer, "\x1b[{};{}H", row + 1, col + 1);
 
             // Set style.
-            let sgr = build_sgr(cell.fg, cell.bg, cell.modifier);
-            let _ = writer.write_all(sgr.as_bytes());
+            write_sgr(writer, SgrStyleKey::from_cell(cell));
 
             write_hyperlink_if_changed(
                 writer,
@@ -732,7 +793,7 @@ fn write_cell(
     writer: &mut impl Write,
     cursor_position: Option<(u16, u16)>,
     cell: &CellData,
-    last_sgr: &mut String,
+    last_style: &mut Option<SgrStyleKey>,
     active_hyperlink: &mut Option<String>,
     frame: &FrameData,
 ) {
@@ -744,10 +805,10 @@ fn write_cell(
         write_cursor_position(writer, position);
     }
 
-    let sgr = build_sgr(cell.fg, cell.bg, cell.modifier);
-    if sgr != *last_sgr {
-        let _ = writer.write_all(sgr.as_bytes());
-        *last_sgr = sgr;
+    let style = SgrStyleKey::from_cell(cell);
+    if Some(style) != *last_style {
+        write_sgr(writer, style);
+        *last_style = Some(style);
     }
 
     write_hyperlink_if_changed(writer, active_hyperlink, cell_hyperlink_uri(frame, cell));
@@ -771,7 +832,7 @@ fn cells_visually_equal(
 }
 
 fn write_changed_cells(writer: &mut impl Write, frame: &FrameData, prev: &FrameData) {
-    let mut last_sgr = String::new(); // Track last SGR to avoid redundant style changes.
+    let mut last_style = None; // Track the canonical style to avoid redundant SGR changes.
     let mut active_hyperlink = None;
     let sanitized_hyperlinks = sanitized_frame_hyperlinks(frame);
     let prev_sanitized_hyperlinks = sanitized_frame_hyperlinks(prev);
@@ -787,6 +848,7 @@ fn write_changed_cells(writer: &mut impl Write, frame: &FrameData, prev: &FrameD
             let idx = (row as usize) * (frame.width as usize) + (col as usize);
             let cell = &frame.cells[idx];
             let prev_cell = &prev.cells[idx];
+            let width = cell_width(cell);
 
             if !cell.skip
                 && (!cells_visually_equal(
@@ -803,16 +865,16 @@ fn write_changed_cells(writer: &mut impl Write, frame: &FrameData, prev: &FrameD
                     writer,
                     cursor_position,
                     cell,
-                    &mut last_sgr,
+                    &mut last_style,
                     &mut active_hyperlink,
                     frame,
                 );
-                next_inline_col = (cell.symbol.is_ascii() && cell_width(cell) == 1)
-                    .then_some(col.saturating_add(1));
+                next_inline_col =
+                    (cell.symbol.is_ascii() && width == 1).then_some(col.saturating_add(1));
             }
 
-            to_skip = cell_width(cell).saturating_sub(1);
-            let affected_width = cmp::max(cell_width(cell), cell_width(prev_cell));
+            to_skip = width.saturating_sub(1);
+            let affected_width = cmp::max(width, cell_width(prev_cell));
             invalidated = cmp::max(affected_width, invalidated).saturating_sub(1);
         }
     }
@@ -820,7 +882,7 @@ fn write_changed_cells(writer: &mut impl Write, frame: &FrameData, prev: &FrameD
     close_hyperlink(writer, &mut active_hyperlink);
 
     // Reset style if we wrote anything.
-    if !last_sgr.is_empty() {
+    if last_style.is_some() {
         let _ = writer.write_all(b"\x1b[0m");
     }
 }
@@ -871,80 +933,977 @@ mod tests {
         cell
     }
 
-    #[test]
-    fn color_to_sgr_fg_named_colors() {
-        assert_eq!(color_to_sgr_fg(0x00_00_00_00), "39"); // Reset
-        assert_eq!(color_to_sgr_fg(0x00_00_00_01), "30"); // Black
-        assert_eq!(color_to_sgr_fg(0x00_00_00_02), "31"); // Red
-        assert_eq!(color_to_sgr_fg(0x00_00_00_10), "97"); // White
+    const PERFORMANCE_WIDTH: u16 = 200;
+    const PERFORMANCE_HEIGHT: u16 = 50;
+    const PERFORMANCE_CELLS: usize = PERFORMANCE_WIDTH as usize * PERFORMANCE_HEIGHT as usize;
+
+    struct EncoderWorkload {
+        name: &'static str,
+        previous: Option<FrameData>,
+        current: FrameData,
+        repaint: bool,
+        expected_full: bool,
+    }
+
+    fn performance_workloads() -> [EncoderWorkload; 4] {
+        let dense_previous = dense_coloured_frame(0);
+        let dense_current = dense_coloured_frame(1);
+        assert!(
+            dense_previous
+                .cells
+                .iter()
+                .zip(&dense_current.cells)
+                .all(|(previous, current)| previous != current),
+            "dense fixture must change every cell"
+        );
+        for frame in [&dense_previous, &dense_current] {
+            assert!(frame.hyperlinks.is_empty());
+            assert!(frame.cells.iter().all(|cell| {
+                cell.hyperlink.is_none() && cell.symbol.len() == 1 && cell.symbol.is_ascii()
+            }));
+        }
+
+        let plain_previous = plain_scroll_frame(0);
+        let plain_current = plain_scroll_frame(1);
+        let plain_changed = changed_cell_count(&plain_previous, &plain_current);
+        assert_eq!(
+            plain_changed, PERFORMANCE_CELLS,
+            "plain-scroll fixture must change every cell"
+        );
+
+        let sparse_previous = sparse_frame();
+        let mut sparse_current = sparse_previous.clone();
+        for edit in 0..16 {
+            let index = (edit * 613 + 97) % PERFORMANCE_CELLS;
+            sparse_current.cells[index] = make_cell("#", 0, 0, 0);
+        }
+        let sparse_changed = changed_cell_count(&sparse_previous, &sparse_current);
+        assert_eq!(sparse_changed, 16, "sparse fixture changed-cell count");
+        assert!(sparse_changed > 0, "sparse fixture must not be a no-op");
+
+        [
+            EncoderWorkload {
+                name: "dense_colour",
+                previous: Some(dense_previous),
+                current: dense_current,
+                repaint: false,
+                expected_full: false,
+            },
+            EncoderWorkload {
+                name: "plain_scroll",
+                previous: Some(plain_previous),
+                current: plain_current,
+                repaint: false,
+                expected_full: false,
+            },
+            EncoderWorkload {
+                name: "sparse_edit",
+                previous: Some(sparse_previous),
+                current: sparse_current,
+                repaint: false,
+                expected_full: false,
+            },
+            EncoderWorkload {
+                name: "full_redraw",
+                previous: None,
+                current: plain_scroll_frame(3),
+                repaint: false,
+                expected_full: true,
+            },
+        ]
+    }
+
+    fn changed_cell_count(previous: &FrameData, current: &FrameData) -> usize {
+        previous
+            .cells
+            .iter()
+            .zip(&current.cells)
+            .filter(|(previous, current)| previous != current)
+            .count()
+    }
+
+    fn dense_coloured_frame(generation: usize) -> FrameData {
+        let cells = (0..PERFORMANCE_CELLS)
+            .map(|index| {
+                let symbol = char::from(b'!' + ((index + generation) % 94) as u8).to_string();
+                make_cell(
+                    &symbol,
+                    performance_colour(index + generation),
+                    performance_colour(index * 5 + generation + 1),
+                    performance_modifier(index + generation),
+                )
+            })
+            .collect();
+        make_frame(PERFORMANCE_WIDTH, PERFORMANCE_HEIGHT, cells)
+    }
+
+    fn performance_colour(index: usize) -> u32 {
+        match index % 3 {
+            0 => 1 + ((index / 3) % 16) as u32,
+            1 => 0x01_00_00_00 | ((index * 37) % 256) as u32,
+            _ => {
+                let red = ((index * 17) % 256) as u32;
+                let green = ((index * 43) % 256) as u32;
+                let blue = ((index * 97) % 256) as u32;
+                0x02_00_00_00 | (red << 16) | (green << 8) | blue
+            }
+        }
+    }
+
+    fn performance_modifier(index: usize) -> u16 {
+        use ratatui::style::Modifier;
+
+        let (modifier, underline_style) = match index % 8 {
+            0 => (Modifier::empty(), 0),
+            1 => (Modifier::BOLD, 0),
+            2 => (Modifier::DIM | Modifier::ITALIC, 0),
+            3 => (Modifier::UNDERLINED, 1),
+            4 => (Modifier::BOLD | Modifier::UNDERLINED, 2),
+            5 => (Modifier::ITALIC | Modifier::UNDERLINED, 3),
+            6 => (Modifier::DIM | Modifier::UNDERLINED, 4),
+            _ => (Modifier::BOLD | Modifier::ITALIC | Modifier::UNDERLINED, 5),
+        };
+        crate::protocol::modifier_to_u16(crate::protocol::modifier_with_underline_style(
+            modifier,
+            underline_style,
+        ))
+    }
+
+    fn plain_scroll_frame(row_offset: usize) -> FrameData {
+        let cells = (0..PERFORMANCE_CELLS)
+            .map(|index| {
+                let row = index / PERFORMANCE_WIDTH as usize;
+                let col = index % PERFORMANCE_WIDTH as usize;
+                let symbol =
+                    char::from(b'A' + ((row + row_offset + col * 7) % 26) as u8).to_string();
+                make_cell(&symbol, 0, 0, 0)
+            })
+            .collect();
+        make_frame(PERFORMANCE_WIDTH, PERFORMANCE_HEIGHT, cells)
+    }
+
+    fn sparse_frame() -> FrameData {
+        let cells = (0..PERFORMANCE_CELLS)
+            .map(|index| {
+                let symbol = char::from(b'a' + (index % 26) as u8).to_string();
+                make_cell(&symbol, 0, 0, 0)
+            })
+            .collect();
+        make_frame(PERFORMANCE_WIDTH, PERFORMANCE_HEIGHT, cells)
+    }
+
+    fn encoder_for_workload(workload: &EncoderWorkload) -> BlitEncoder {
+        let mut encoder = BlitEncoder::new();
+        if let Some(previous) = workload.previous.as_ref() {
+            let encoded = encoder.encode(previous, false);
+            encoder.commit(previous.clone(), encoded);
+        }
+        encoder
+    }
+
+    fn assert_platform_ime_anchor_contract(bytes: &[u8], workload_name: &str) {
+        let sync_end = final_sync_output_end(bytes)
+            .unwrap_or_else(|| panic!("{workload_name} should end synchronized output"));
+        let trailing = &bytes[sync_end + SYNC_OUTPUT_END.len()..];
+        assert_eq!(
+            trailing.is_empty(),
+            !repeat_ime_anchor_after_sync(),
+            "{workload_name} should follow the platform IME-anchor policy"
+        );
     }
 
     #[test]
-    fn color_to_sgr_fg_indexed() {
-        assert_eq!(color_to_sgr_fg(0x01_00_00_AB), "38;5;171");
+    fn encoder_performance_fixture_corpus_is_deterministic() {
+        let workloads = performance_workloads();
+
+        for workload in &workloads {
+            assert_eq!(
+                workload.current.width, PERFORMANCE_WIDTH,
+                "{} width",
+                workload.name
+            );
+            assert_eq!(
+                workload.current.height, PERFORMANCE_HEIGHT,
+                "{} height",
+                workload.name
+            );
+            assert_eq!(
+                workload.current.cells.len(),
+                PERFORMANCE_CELLS,
+                "{} cells",
+                workload.name
+            );
+            if let Some(previous) = workload.previous.as_ref() {
+                assert_eq!(
+                    (previous.width, previous.height, previous.cells.len()),
+                    (PERFORMANCE_WIDTH, PERFORMANCE_HEIGHT, PERFORMANCE_CELLS),
+                    "{} previous frame dimensions",
+                    workload.name
+                );
+            }
+
+            let encoder = encoder_for_workload(workload);
+            let first = encoder.encode(&workload.current, workload.repaint);
+            let second = encoder.encode(&workload.current, workload.repaint);
+
+            assert_eq!(
+                first.full, workload.expected_full,
+                "{} classification",
+                workload.name
+            );
+            assert_eq!(
+                second.full, first.full,
+                "{} repeated classification",
+                workload.name
+            );
+            assert!(!first.bytes.is_empty(), "{} output", workload.name);
+            assert_eq!(
+                second.bytes, first.bytes,
+                "{} repeated bytes",
+                workload.name
+            );
+            assert_eq!(
+                second.bytes.len(),
+                first.bytes.len(),
+                "{} repeated length",
+                workload.name
+            );
+            assert_platform_ime_anchor_contract(&first.bytes, workload.name);
+        }
+    }
+
+    fn with_platform_ime_anchor(mut expected: Vec<u8>, anchor: &[u8]) -> Vec<u8> {
+        if repeat_ime_anchor_after_sync() {
+            expected.extend_from_slice(anchor);
+        }
+        expected
     }
 
     #[test]
-    fn color_to_sgr_fg_rgb() {
-        assert_eq!(color_to_sgr_fg(0x02_FF_80_40), "38;2;255;128;64");
+    fn ansi_encoder_matches_current_master_byte_oracle() {
+        let full =
+            BlitEncoder::new().encode(&make_frame(1, 1, vec![make_cell("A", 0, 0, 0)]), false);
+        let expected_full = with_platform_ime_anchor(
+            concat!(
+                "\x1b[?2026h",
+                "\x1b[?25l",
+                "\x1b]8;;\x1b\\",
+                "\x1b[2J",
+                "\x1b[1;1H\x1b[0;39;49mA",
+                "\x1b[0m",
+                "\x1b[1;1H\x1b[?25l",
+                "\x1b[?2026l",
+            )
+            .as_bytes()
+            .to_vec(),
+            b"\x1b[1;1H\x1b[?25l",
+        );
+        assert_eq!(full.bytes, expected_full, "full redraw oracle");
+
+        let previous = make_frame(1, 1, vec![make_cell("A", 0, 0, 0)]);
+        let current = make_frame(1, 1, vec![make_cell("B", 0, 0, 0)]);
+        let mut encoder = BlitEncoder::new();
+        let initial = encoder.encode(&previous, false);
+        encoder.commit(previous, initial);
+        let diff = encoder.encode(&current, false);
+        let expected_diff = with_platform_ime_anchor(
+            concat!(
+                "\x1b[?2026h",
+                "\x1b[?25l",
+                "\x1b]8;;\x1b\\",
+                "\x1b[1;1H\x1b[0;39;49mB",
+                "\x1b[0m",
+                "\x1b[1;1H\x1b[?25l",
+                "\x1b[?2026l",
+            )
+            .as_bytes()
+            .to_vec(),
+            b"\x1b[1;1H\x1b[?25l",
+        );
+        assert_eq!(diff.bytes, expected_diff, "diff redraw oracle");
+        encoder.commit(current.clone(), diff);
+
+        let mut cursor_frame = current.clone();
+        cursor_frame.cursor = Some(CursorState {
+            x: 0,
+            y: 0,
+            visible: true,
+            shape: 6,
+        });
+        let cursor = encoder.encode(&cursor_frame, false);
+        let expected_cursor = with_platform_ime_anchor(
+            concat!(
+                "\x1b[?2026h",
+                "\x1b[?25l",
+                "\x1b]8;;\x1b\\",
+                "\x1b[1;1H\x1b[6 q\x1b[?25h",
+                "\x1b[?2026l",
+            )
+            .as_bytes()
+            .to_vec(),
+            b"\x1b[1;1H\x1b[?25h",
+        );
+        assert_eq!(cursor.bytes, expected_cursor, "cursor-only oracle");
+
+        let mut hyperlink_frame = make_frame(1, 1, vec![linked_cell("L", 0)]);
+        hyperlink_frame
+            .hyperlinks
+            .push("https://example.test".to_owned());
+        let hyperlink = BlitEncoder::new().encode(&hyperlink_frame, false);
+        let expected_hyperlink = with_platform_ime_anchor(
+            concat!(
+                "\x1b[?2026h",
+                "\x1b[?25l",
+                "\x1b]8;;\x1b\\",
+                "\x1b[2J",
+                "\x1b[1;1H\x1b[0;39;49m",
+                "\x1b]8;;https://example.test\x1b\\L",
+                "\x1b]8;;\x1b\\",
+                "\x1b[0m",
+                "\x1b[1;1H\x1b[?25l",
+                "\x1b[?2026l",
+            )
+            .as_bytes()
+            .to_vec(),
+            b"\x1b[1;1H\x1b[?25l",
+        );
+        assert_eq!(
+            hyperlink.bytes, expected_hyperlink,
+            "hyperlink redraw oracle"
+        );
     }
 
     #[test]
-    fn color_to_sgr_bg_named_colors() {
-        assert_eq!(color_to_sgr_bg(0x00_00_00_00), "49"); // Reset
-        assert_eq!(color_to_sgr_bg(0x00_00_00_01), "40"); // Black
-        assert_eq!(color_to_sgr_bg(0x00_00_00_10), "107"); // White
+    fn diff_reuses_sgr_for_unknown_colour_encodings_that_render_as_reset() {
+        let previous = make_frame(2, 1, vec![make_cell("A", 0, 0, 0), make_cell("B", 0, 0, 0)]);
+        let current = make_frame(
+            2,
+            1,
+            vec![
+                make_cell("C", 0x7F_12_34_56, 0x00_12_34_FF, 0),
+                make_cell("D", 0x00_AB_CD_00, 0x03_00_00_00, 0),
+            ],
+        );
+        let mut output = Vec::new();
+
+        blit_frame_to(&mut output, &current, Some(&previous));
+
+        assert_eq!(
+            output
+                .windows(b"\x1b[0;39;49m".len())
+                .filter(|window| *window == b"\x1b[0;39;49m")
+                .count(),
+            1,
+            "equivalent unknown colour encodings should reuse the emitted SGR"
+        );
     }
 
     #[test]
-    fn color_to_sgr_bg_rgb() {
-        assert_eq!(color_to_sgr_bg(0x02_FF_80_40), "48;2;255;128;64");
+    fn diff_reuses_sgr_when_modifiers_differ_only_in_ignored_bits() {
+        let previous = make_frame(2, 1, vec![make_cell("A", 0, 0, 0), make_cell("B", 0, 0, 0)]);
+        let current = make_frame(
+            2,
+            1,
+            vec![
+                make_cell("C", 0, 0, (0x0F << 12) | (1 << 9)),
+                make_cell("D", 0, 0, 1 << 10),
+            ],
+        );
+        let mut output = Vec::new();
+
+        blit_frame_to(&mut output, &current, Some(&previous));
+
+        assert_eq!(
+            output
+                .windows(b"\x1b[0;39;49m".len())
+                .filter(|window| *window == b"\x1b[0;39;49m")
+                .count(),
+            1,
+            "ignored modifier bits should not trigger a duplicate SGR"
+        );
+    }
+
+    #[cfg(feature = "test-allocation-counting")]
+    #[test]
+    fn direct_sgr_style_encoding_does_not_allocate_per_cell() {
+        const CELLS: usize = 128;
+        let styles: Vec<_> = (0..CELLS)
+            .map(|index| {
+                SgrStyleKey::from_cell(&make_cell(
+                    "",
+                    performance_colour(index),
+                    performance_colour(index * 5 + 1),
+                    performance_modifier(index),
+                ))
+            })
+            .collect();
+        let mut output = Vec::with_capacity(CELLS * 40);
+
+        let (_, allocations) = crate::test_alloc::measure(|| {
+            for style in styles.iter().copied() {
+                write_sgr(&mut output, style);
+            }
+        });
+
+        assert_eq!(allocations.allocations, 0, "style encoding allocations");
+        assert!(
+            styles.windows(2).all(|pair| pair[0] != pair[1]),
+            "the regression corpus must vary style for every adjacent cell"
+        );
+        assert!(!output.is_empty());
+    }
+
+    fn correctness_matrix_frames() -> [FrameData; 3] {
+        use ratatui::style::Modifier;
+
+        let mut cells = vec![
+            make_cell("N", 0x00_00_00_02, 0x00_00_00_05, 0),
+            make_cell("I", 0x01_00_00_AB, 0x01_00_00_16, 0),
+            make_cell("R", 0x02_12_34_56, 0x02_65_43_21, 0),
+        ];
+        for (symbol, modifier) in [
+            ("b", Modifier::BOLD),
+            ("d", Modifier::DIM),
+            ("i", Modifier::ITALIC),
+            ("s", Modifier::SLOW_BLINK),
+            ("r", Modifier::RAPID_BLINK),
+            ("v", Modifier::REVERSED),
+            ("h", Modifier::HIDDEN),
+            ("x", Modifier::CROSSED_OUT),
+        ] {
+            cells.push(make_cell(
+                symbol,
+                0,
+                0,
+                crate::protocol::modifier_to_u16(modifier),
+            ));
+        }
+        for (symbol, underline_style) in [("1", 1), ("2", 2), ("3", 3), ("4", 4), ("5", 5)] {
+            let modifier = crate::protocol::modifier_with_underline_style(
+                Modifier::UNDERLINED,
+                underline_style,
+            );
+            cells.push(make_cell(
+                symbol,
+                0,
+                0,
+                crate::protocol::modifier_to_u16(modifier),
+            ));
+        }
+        cells.extend([
+            make_cell(WIDE_GRAPHEME, 0, 0, 0),
+            make_skip_cell("~", 0, 0, 0),
+            make_cell(HALFWIDTH_VOICED_KANA, 0, 0, 0),
+            make_skip_cell("^", 0, 0, 0),
+            linked_cell("V", 0),
+            linked_cell("S", 1),
+            linked_cell("E", 2),
+            linked_cell("M", 99),
+        ]);
+
+        let mut visible = make_frame(cells.len() as u16, 1, cells);
+        visible.hyperlinks = vec![
+            "https://valid.test".to_owned(),
+            "https://san\x1b\x07itized.test".to_owned(),
+            "\x1b\x07".to_owned(),
+        ];
+        visible.cursor = Some(CursorState {
+            x: 1,
+            y: 0,
+            visible: true,
+            shape: 6,
+        });
+        let mut hidden = visible.clone();
+        hidden.cursor = Some(CursorState {
+            x: 2,
+            y: 0,
+            visible: false,
+            shape: 2,
+        });
+        let mut absent = hidden.clone();
+        absent.cursor = None;
+        [visible, hidden, absent]
     }
 
     #[test]
-    fn modifier_to_sgr_parts_bold() {
-        let parts = modifier_to_sgr_parts(1); // BOLD
-        assert!(parts.contains(&"1"));
+    fn ansi_encoder_correctness_matrix_covers_supported_semantics() {
+        let [visible, hidden, absent] = correctness_matrix_frames();
+        let mut encoder = BlitEncoder::new();
+
+        let visible_encoded = encoder.encode(&visible, false);
+        let visible_output = String::from_utf8(visible_encoded.bytes.clone()).unwrap();
+        for sgr in [
+            "\x1b[0;31;44m",
+            "\x1b[0;38;5;171;48;5;22m",
+            "\x1b[0;38;2;18;52;86;48;2;101;67;33m",
+            "\x1b[0;1;39;49m",
+            "\x1b[0;2;39;49m",
+            "\x1b[0;3;39;49m",
+            "\x1b[0;5;39;49m",
+            "\x1b[0;6;39;49m",
+            "\x1b[0;7;39;49m",
+            "\x1b[0;8;39;49m",
+            "\x1b[0;9;39;49m",
+            "\x1b[0;4;39;49m",
+            "\x1b[0;4:2;39;49m",
+            "\x1b[0;4:3;39;49m",
+            "\x1b[0;4:4;39;49m",
+            "\x1b[0;4:5;39;49m",
+        ] {
+            assert!(visible_output.contains(sgr), "missing matrix SGR {sgr:?}");
+        }
+        assert!(visible_output.contains(WIDE_GRAPHEME));
+        assert!(visible_output.contains(HALFWIDTH_VOICED_KANA));
+        assert!(
+            !visible_output.contains('~'),
+            "wide skip cell must not render"
+        );
+        assert!(
+            !visible_output.contains('^'),
+            "kana skip cell must not render"
+        );
+        assert!(visible_output.contains("\x1b]8;;https://valid.test\x1b\\V"));
+        assert!(visible_output.contains("\x1b]8;;https://sanitized.test\x1b\\S"));
+        assert_eq!(
+            visible_output.matches("\x1b]8;;https://").count(),
+            2,
+            "empty sanitized and out-of-range hyperlinks must remain unlinked"
+        );
+        assert!(visible_output.contains("\x1b[1;2H\x1b[6 q\x1b[?25h"));
+        encoder.commit(visible, visible_encoded);
+
+        let hidden_encoded = encoder.encode(&hidden, false);
+        let hidden_output = String::from_utf8(hidden_encoded.bytes.clone()).unwrap();
+        assert!(hidden_output.contains("\x1b[1;3H\x1b[2 q\x1b[?25l"));
+        encoder.commit(hidden, hidden_encoded);
+
+        let absent_output = String::from_utf8(encoder.encode(&absent, false).bytes).unwrap();
+        assert!(
+            absent_output.contains("\x1b[1;2H\x1b[0 q\x1b[?25l"),
+            "absent cursor should return to the last visible anchor and default shape"
+        );
+    }
+
+    #[derive(Debug, PartialEq, Eq)]
+    struct BenchmarkTiming {
+        median_ns_per_frame: u128,
+        p95_ns_per_frame: u128,
+        max_ns_per_frame: u128,
+    }
+
+    fn summarize_timing_samples(mut samples: Vec<u128>) -> BenchmarkTiming {
+        assert!(!samples.is_empty(), "timing summary requires samples");
+        samples.sort_unstable();
+        let p95_index = (samples.len() * 95).div_ceil(100) - 1;
+        BenchmarkTiming {
+            median_ns_per_frame: samples[samples.len() / 2],
+            p95_ns_per_frame: samples[p95_index],
+            max_ns_per_frame: *samples.last().expect("samples are non-empty"),
+        }
     }
 
     #[test]
-    fn modifier_to_sgr_parts_italic() {
-        let parts = modifier_to_sgr_parts(4); // ITALIC
-        assert!(parts.contains(&"3"));
+    fn timing_summary_handles_a_single_sample() {
+        assert_eq!(
+            summarize_timing_samples(vec![17]),
+            BenchmarkTiming {
+                median_ns_per_frame: 17,
+                p95_ns_per_frame: 17,
+                max_ns_per_frame: 17,
+            }
+        );
     }
 
     #[test]
-    fn modifier_to_sgr_parts_empty() {
-        let parts = modifier_to_sgr_parts(0);
-        assert!(parts.is_empty());
+    fn timing_summary_reports_percentiles_for_a_fixed_sequence() {
+        assert_eq!(
+            summarize_timing_samples(vec![9, 1, 4, 7, 3]),
+            BenchmarkTiming {
+                median_ns_per_frame: 4,
+                p95_ns_per_frame: 9,
+                max_ns_per_frame: 9,
+            }
+        );
+    }
+
+    fn warm_up_encoder(workload: &EncoderWorkload, encoder: &BlitEncoder, frames: usize) -> usize {
+        let mut output_bytes = None;
+        for _ in 0..frames {
+            let encoded = std::hint::black_box(
+                encoder.encode(std::hint::black_box(&workload.current), workload.repaint),
+            );
+            assert_eq!(encoded.full, workload.expected_full);
+            assert!(!encoded.bytes.is_empty());
+            if let Some(expected) = output_bytes {
+                assert_eq!(encoded.bytes.len(), expected);
+            } else {
+                output_bytes = Some(encoded.bytes.len());
+            }
+            drop(encoded);
+        }
+        output_bytes.expect("warm-up should encode at least one frame")
+    }
+
+    fn time_encoder_batches(
+        workload: &EncoderWorkload,
+        encoder: &BlitEncoder,
+        output_bytes: usize,
+        frames_per_batch: usize,
+        batches: usize,
+    ) -> BenchmarkTiming {
+        assert!(batches >= 100, "p95 requires at least 100 timing samples");
+        let mut samples = Vec::with_capacity(batches);
+        for _ in 0..batches {
+            // Each sample includes sequential encode, invariant checks, and
+            // output destruction/deallocation. One Instant pair is amortized
+            // across the batch rather than subtracted through calibration.
+            let started = std::time::Instant::now();
+            for _ in 0..frames_per_batch {
+                let encoded = std::hint::black_box(
+                    encoder.encode(std::hint::black_box(&workload.current), workload.repaint),
+                );
+                assert_eq!(encoded.full, workload.expected_full);
+                assert_eq!(encoded.bytes.len(), output_bytes);
+                std::hint::black_box(&encoded.bytes);
+                drop(encoded);
+            }
+            samples.push(started.elapsed().as_nanos() / frames_per_batch as u128);
+        }
+
+        summarize_timing_samples(samples)
+    }
+
+    #[cfg(feature = "test-allocation-counting")]
+    fn measure_encoder_allocations(
+        workload: &EncoderWorkload,
+        encoder: &BlitEncoder,
+        output_bytes: usize,
+        frames: usize,
+    ) -> crate::test_alloc::AllocationStats {
+        let mut expected_stats = None;
+        for _ in 0..frames {
+            let (encoded, stats) = crate::test_alloc::measure(|| {
+                std::hint::black_box(
+                    encoder.encode(std::hint::black_box(&workload.current), workload.repaint),
+                )
+            });
+
+            assert_eq!(encoded.full, workload.expected_full);
+            assert_eq!(encoded.bytes.len(), output_bytes);
+            assert!(stats.allocations > 0);
+            assert!(stats.requested_bytes >= output_bytes);
+            if let Some(expected) = expected_stats {
+                assert_eq!(stats, expected, "{} allocation stability", workload.name);
+            } else {
+                expected_stats = Some(stats);
+            }
+            drop(encoded);
+        }
+        expected_stats.expect("allocation measurement should encode at least one frame")
+    }
+
+    // Production-allocator timing command (do not add `--features`):
+    // env -u HERDR_RENDER_PROF cargo test --release protocol::render_ansi::tests::ansi_encoder_release_timing_benchmark -- --ignored --exact --nocapture --test-threads=1
+    #[test]
+    #[ignore = "manual release timing benchmark; use the documented production-allocator command"]
+    fn ansi_encoder_release_timing_benchmark() {
+        const WARM_UP_FRAMES: usize = 20;
+        const FRAMES_PER_BATCH: usize = 10;
+        const BATCHES: usize = 100;
+
+        assert_release_benchmark_environment();
+        println!();
+        for workload in &performance_workloads() {
+            let encoder = encoder_for_workload(workload);
+            let output_bytes = warm_up_encoder(workload, &encoder, WARM_UP_FRAMES);
+            let timing =
+                time_encoder_batches(workload, &encoder, output_bytes, FRAMES_PER_BATCH, BATCHES);
+
+            println!(
+                "METRIC {}_median_ns_per_frame={}",
+                workload.name, timing.median_ns_per_frame
+            );
+            println!(
+                "METRIC {}_p95_ns_per_frame={}",
+                workload.name, timing.p95_ns_per_frame
+            );
+            println!(
+                "METRIC {}_max_ns_per_frame={}",
+                workload.name, timing.max_ns_per_frame
+            );
+            println!("METRIC {}_output_bytes={}", workload.name, output_bytes);
+        }
+    }
+
+    // Allocation command:
+    // env -u HERDR_RENDER_PROF cargo test --release --features test-allocation-counting protocol::render_ansi::tests::ansi_encoder_release_allocation_benchmark -- --ignored --exact --nocapture --test-threads=1
+    // Autoresearch may chain that command after the production-allocator timing
+    // command with `&&`; keeping them separate prevents instrumentation skew.
+    #[cfg(feature = "test-allocation-counting")]
+    #[test]
+    #[ignore = "manual release allocation benchmark; use the documented feature command"]
+    fn ansi_encoder_release_allocation_benchmark() {
+        const WARM_UP_FRAMES: usize = 20;
+        const ALLOCATION_FRAMES: usize = 10;
+
+        assert_release_benchmark_environment();
+        println!();
+        for workload in &performance_workloads() {
+            let encoder = encoder_for_workload(workload);
+            let output_bytes = warm_up_encoder(workload, &encoder, WARM_UP_FRAMES);
+            let allocations =
+                measure_encoder_allocations(workload, &encoder, output_bytes, ALLOCATION_FRAMES);
+
+            println!(
+                "METRIC {}_allocations_per_frame={}",
+                workload.name, allocations.allocations
+            );
+            println!(
+                "METRIC {}_requested_bytes_per_frame={}",
+                workload.name, allocations.requested_bytes
+            );
+            println!("METRIC {}_output_bytes={}", workload.name, output_bytes);
+        }
+    }
+
+    fn assert_release_benchmark_environment() {
+        if cfg!(debug_assertions) {
+            panic!("run this benchmark with `cargo test --release`");
+        }
+        assert!(
+            !crate::render_prof::enabled(),
+            "HERDR_RENDER_PROF must be disabled for the ANSI encoder benchmark"
+        );
+    }
+
+    fn render_sgr(fg: u32, bg: u32, modifier: u16) -> Vec<u8> {
+        let mut output = Vec::new();
+        write_sgr(
+            &mut output,
+            SgrStyleKey::from_cell(&make_cell("", fg, bg, modifier)),
+        );
+        output
+    }
+
+    // Frozen reference for the String/Vec implementation immediately before
+    // the direct-byte writer. Keep this test-only: production has one encoder.
+    fn legacy_sgr_colour(value: u32, channel: SgrChannel) -> String {
+        let base = match channel {
+            SgrChannel::Foreground => 30,
+            SgrChannel::Background => 40,
+        };
+        let bright_base = match channel {
+            SgrChannel::Foreground => 90,
+            SgrChannel::Background => 100,
+        };
+        let extended = match channel {
+            SgrChannel::Foreground => 38,
+            SgrChannel::Background => 48,
+        };
+        let reset = match channel {
+            SgrChannel::Foreground => 39,
+            SgrChannel::Background => 49,
+        };
+        match value >> 24 {
+            0x00 => match value & 0xff {
+                0 => reset.to_string(),
+                named @ 1..=8 => (base + named - 1).to_string(),
+                named @ 9..=16 => (bright_base + named - 9).to_string(),
+                _ => reset.to_string(),
+            },
+            0x01 => format!("{extended};5;{}", value & 0xff),
+            0x02 => format!(
+                "{extended};2;{};{};{}",
+                (value >> 16) & 0xff,
+                (value >> 8) & 0xff,
+                value & 0xff
+            ),
+            _ => reset.to_string(),
+        }
+    }
+
+    fn legacy_sgr_modifier_parts(value: u16) -> Vec<&'static str> {
+        let mut parts = Vec::new();
+        for (flag, code) in [
+            (BOLD_MODIFIER, "1"),
+            (DIM_MODIFIER, "2"),
+            (ITALIC_MODIFIER, "3"),
+        ] {
+            if value & flag != 0 {
+                parts.push(code);
+            }
+        }
+        if value & UNDERLINED_MODIFIER != 0 {
+            parts.push(match underline_style_from_modifier(value) {
+                2 => "4:2",
+                3 => "4:3",
+                4 => "4:4",
+                5 => "4:5",
+                _ => "4",
+            });
+        }
+        for (flag, code) in [
+            (SLOW_BLINK_MODIFIER, "5"),
+            (RAPID_BLINK_MODIFIER, "6"),
+            (REVERSED_MODIFIER, "7"),
+            (HIDDEN_MODIFIER, "8"),
+            (CROSSED_OUT_MODIFIER, "9"),
+        ] {
+            if value & flag != 0 {
+                parts.push(code);
+            }
+        }
+        parts
+    }
+
+    fn legacy_build_sgr(fg: u32, bg: u32, modifier: u16) -> Vec<u8> {
+        let mut parts = vec!["0".to_owned()];
+        parts.extend(
+            legacy_sgr_modifier_parts(modifier)
+                .into_iter()
+                .map(str::to_owned),
+        );
+        parts.push(legacy_sgr_colour(fg, SgrChannel::Foreground));
+        parts.push(legacy_sgr_colour(bg, SgrChannel::Background));
+        format!("\x1b[{}m", parts.join(";")).into_bytes()
+    }
+
+    fn packed_colour_corpus() -> Vec<u32> {
+        let mut colours = Vec::new();
+        colours.extend(0..=16);
+        colours.extend([0x0000_0011, 0x0000_00ff, 0x00ab_cd00, 0x00ab_cd10]);
+        for index in 0..=255 {
+            colours.push(0x0100_0000 | index);
+            colours.push(0x01ab_cd00 | index);
+        }
+        colours.extend([
+            0x0200_0000,
+            0x02ff_ffff,
+            0x02ff_0000,
+            0x0200_ff00,
+            0x0200_00ff,
+            0x0201_0203,
+            0x027f_80fe,
+            0x03_00_00_00,
+            0x7f_12_34_56,
+            0xff_ff_ff_ff,
+        ]);
+        colours
     }
 
     #[test]
-    fn build_sgr_produces_valid_sequence() {
-        let sgr = build_sgr(0x00_00_00_02, 0x00_00_00_01, 1); // fg=Red, bg=Black, bold
-        assert!(sgr.starts_with("\x1b["));
-        assert!(sgr.ends_with("m"));
-        assert!(sgr.contains("0")); // reset existing style first
-        assert!(sgr.contains("1")); // bold
-        assert!(sgr.contains("31")); // fg red
-        assert!(sgr.contains("40")); // bg black
+    fn direct_sgr_writer_matches_frozen_legacy_for_every_modifier_value() {
+        for modifier in 0..=u16::MAX {
+            assert_eq!(
+                render_sgr(0x02_12_34_56, 0x01_ab_cd_ef, modifier),
+                legacy_build_sgr(0x02_12_34_56, 0x01_ab_cd_ef, modifier),
+                "modifier {modifier:#06x}"
+            );
+        }
     }
 
     #[test]
-    fn build_sgr_resets_previous_modifiers_when_cell_is_plain() {
-        assert_eq!(build_sgr(0x00_00_00_00, 0x00_00_00_00, 0), "\x1b[0;39;49m");
+    fn direct_sgr_writer_matches_frozen_legacy_for_packed_colour_corpus() {
+        for colour in packed_colour_corpus() {
+            for modifier in [0, u16::MAX, UNDERLINED_MODIFIER | (3 << 12)] {
+                assert_eq!(
+                    render_sgr(colour, 0, modifier),
+                    legacy_build_sgr(colour, 0, modifier),
+                    "foreground {colour:#010x}, modifier {modifier:#06x}"
+                );
+                assert_eq!(
+                    render_sgr(0, colour, modifier),
+                    legacy_build_sgr(0, colour, modifier),
+                    "background {colour:#010x}, modifier {modifier:#06x}"
+                );
+            }
+        }
     }
 
     #[test]
-    fn build_sgr_preserves_curly_underline_style() {
+    fn canonical_style_key_equality_matches_legacy_rendered_byte_equality() {
+        let pairs = [
+            ((0, 0, 0), (0x7f12_3456, 0x00ab_cdff, 1 << 10)),
+            ((0x0100_002a, 0x0100_0007, 0), (0x01ab_cd2a, 0x0112_3407, 0)),
+            (
+                (0, 0, UNDERLINED_MODIFIER),
+                (0, 0, UNDERLINED_MODIFIER | (15 << 12)),
+            ),
+            (
+                (0, 0, UNDERLINED_MODIFIER),
+                (0, 0, UNDERLINED_MODIFIER | (3 << 12)),
+            ),
+            ((1, 0, BOLD_MODIFIER), (2, 0, BOLD_MODIFIER)),
+            ((0x0201_0203, 0, 0), (0x0201_0203, 0, 1 << 11)),
+        ];
+        for (left, right) in pairs {
+            let left_key = SgrStyleKey::from_cell(&make_cell("", left.0, left.1, left.2));
+            let right_key = SgrStyleKey::from_cell(&make_cell("", right.0, right.1, right.2));
+            assert_eq!(
+                left_key == right_key,
+                legacy_build_sgr(left.0, left.1, left.2)
+                    == legacy_build_sgr(right.0, right.1, right.2),
+                "left={left:?}, right={right:?}"
+            );
+        }
+    }
+
+    #[test]
+    fn sgr_writer_supports_all_named_colours() {
+        let expected_foreground = [
+            30, 31, 32, 33, 34, 35, 36, 37, 90, 91, 92, 93, 94, 95, 96, 97,
+        ];
+        let expected_background = [
+            40, 41, 42, 43, 44, 45, 46, 47, 100, 101, 102, 103, 104, 105, 106, 107,
+        ];
+        for named in 1..=16 {
+            assert_eq!(
+                render_sgr(named, 0, 0),
+                format!("\x1b[0;{};49m", expected_foreground[(named - 1) as usize]).as_bytes()
+            );
+            assert_eq!(
+                render_sgr(0, named, 0),
+                format!("\x1b[0;39;{}m", expected_background[(named - 1) as usize]).as_bytes()
+            );
+        }
+    }
+
+    #[test]
+    fn sgr_writer_supports_indexed_colours() {
+        assert_eq!(
+            render_sgr(0x01_00_00_AB, 0x01_00_00_16, 0),
+            b"\x1b[0;38;5;171;48;5;22m"
+        );
+    }
+
+    #[test]
+    fn sgr_writer_supports_rgb_colours() {
+        assert_eq!(
+            render_sgr(0x02_FF_80_40, 0x02_01_02_03, 0),
+            b"\x1b[0;38;2;255;128;64;48;2;1;2;3m"
+        );
+    }
+
+    #[test]
+    fn sgr_writer_preserves_modifier_order() {
+        assert_eq!(
+            render_sgr(2, 1, BOLD_MODIFIER | ITALIC_MODIFIER),
+            b"\x1b[0;1;3;31;40m"
+        );
+    }
+
+    #[test]
+    fn sgr_writer_resets_previous_modifiers_when_cell_is_plain() {
+        assert_eq!(render_sgr(0, 0, 0), b"\x1b[0;39;49m");
+    }
+
+    #[test]
+    fn sgr_writer_preserves_curly_underline_style() {
         let modifier = crate::protocol::modifier_to_u16(
             crate::protocol::modifier_with_underline_style(ratatui::style::Modifier::UNDERLINED, 3),
         );
 
-        assert_eq!(
-            build_sgr(0x00_00_00_00, 0x00_00_00_00, modifier),
-            "\x1b[0;4:3;39;49m"
-        );
+        assert_eq!(render_sgr(0, 0, modifier), b"\x1b[0;4:3;39;49m");
     }
 
     #[test]
