@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1120" width="1600" height="1120" role="img" aria-labelledby="title desc">
+<title id="title">Dense ANSI CPU leaf share</title>
+<desc id="desc">Ranked normalized shares of the innermost target Herdr function in each Time Profiler CPU sample.</desc>
+<style>
+text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; fill: #202428; }
+.mono { font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace; }
+.title { font-size: 29px; font-weight: 700; }
+.subtitle { font-size: 15px; fill: #59636E; }
+.label { font-size: 14px; }
+.small { font-size: 12px; fill: #59636E; }
+.tiny { font-size: 11px; fill: #59636E; }
+.value { font-size: 13px; font-weight: 700; }
+</style>
+<rect width="1600" height="1120" fill="#FFFFFF"/>
+<text x="70.0" y="56.0" class="title">Dense ANSI CPU: normalized target-leaf share</text>
+<text x="70.0" y="84.0" class="subtitle">Each trace is normalized independently. Leaf = innermost symbol from the target Herdr binary; CPU samples, not speedup.</text>
+<text x="70.0" y="111.0" class="small mono">master: 7,894 samples / 7.896s / trace 078ec1c77aec...</text>
+<text x="805.0" y="111.0" class="small mono">candidate: 7,707 samples / 8.091s / trace 39517d50ff32...</text>
+<text x="70.0" y="143.0" class="small">Master: charcoal open square / dashed. Candidate: blue circle / solid. Values use all samples in that trace as denominator.</text>
+<line x1="560.0" y1="177.0" x2="560.0" y2="1028.0" stroke="#D8DDE2" stroke-width="1"/>
+<text x="560.0" y="169.0" class="tiny" text-anchor="middle">0%</text>
+<line x1="738.0" y1="177.0" x2="738.0" y2="1028.0" stroke="#D8DDE2" stroke-width="1"/>
+<text x="738.0" y="169.0" class="tiny" text-anchor="middle">14%</text>
+<line x1="916.0" y1="177.0" x2="916.0" y2="1028.0" stroke="#D8DDE2" stroke-width="1"/>
+<text x="916.0" y="169.0" class="tiny" text-anchor="middle">28%</text>
+<line x1="1094.0" y1="177.0" x2="1094.0" y2="1028.0" stroke="#D8DDE2" stroke-width="1"/>
+<text x="1094.0" y="169.0" class="tiny" text-anchor="middle">42%</text>
+<line x1="1272.0" y1="177.0" x2="1272.0" y2="1028.0" stroke="#D8DDE2" stroke-width="1"/>
+<text x="1272.0" y="169.0" class="tiny" text-anchor="middle">56%</text>
+<line x1="1450.0" y1="177.0" x2="1450.0" y2="1028.0" stroke="#D8DDE2" stroke-width="1"/>
+<text x="1450.0" y="169.0" class="tiny" text-anchor="middle">70%</text>
+<rect x="70" y="182" width="1460" height="49" fill="#F7F8FA"/>
+<text x="92.0" y="210.0" class="label mono">write_cell</text>
+<line x1="560.0" y1="197.0" x2="1417.7" y2="197.0" stroke="#343A40" stroke-width="3" stroke-dasharray="6 5"/>
+<rect x="1412.7" y="192.0" width="10" height="10" fill="#FFFFFF" stroke="#343A40" stroke-width="2"/>
+<text x="535.0" y="201.0" class="tiny mono" text-anchor="end">M 67.5% (5,325)</text>
+<line x1="560.0" y1="215.0" x2="784.5" y2="215.0" stroke="#1769AA" stroke-width="3" stroke-dasharray="none"/>
+<circle cx="784.5" cy="215.0" r="5" fill="#1769AA" stroke="#1769AA"/>
+<text x="535.0" y="219.0" class="tiny mono" text-anchor="end">C 17.7% (1,361)</text>
+<text x="92.0" y="266.0" class="label mono">write_sgr</text>
+<text x="535.0" y="257.0" class="tiny mono" text-anchor="end">M absent</text>
+<line x1="560.0" y1="271.0" x2="840.3" y2="271.0" stroke="#1769AA" stroke-width="3" stroke-dasharray="none"/>
+<circle cx="840.3" cy="271.0" r="5" fill="#1769AA" stroke="#1769AA"/>
+<text x="535.0" y="275.0" class="tiny mono" text-anchor="end">C 22.0% (1,699)</text>
+<rect x="70" y="294" width="1460" height="49" fill="#F7F8FA"/>
+<text x="92.0" y="322.0" class="label mono">build_sgr</text>
+<line x1="560.0" y1="309.0" x2="832.8" y2="309.0" stroke="#343A40" stroke-width="3" stroke-dasharray="6 5"/>
+<rect x="827.8" y="304.0" width="10" height="10" fill="#FFFFFF" stroke="#343A40" stroke-width="2"/>
+<text x="535.0" y="313.0" class="tiny mono" text-anchor="end">M 21.5% (1,694)</text>
+<text x="535.0" y="331.0" class="tiny mono" text-anchor="end">C absent</text>
+<text x="92.0" y="378.0" class="label mono">BlitEncoder::encode_inner</text>
+<line x1="560.0" y1="365.0" x2="652.3" y2="365.0" stroke="#343A40" stroke-width="3" stroke-dasharray="6 5"/>
+<rect x="647.3" y="360.0" width="10" height="10" fill="#FFFFFF" stroke="#343A40" stroke-width="2"/>
+<text x="535.0" y="369.0" class="tiny mono" text-anchor="end">M 7.3% (573)</text>
+<line x1="560.0" y1="383.0" x2="783.4" y2="383.0" stroke="#1769AA" stroke-width="3" stroke-dasharray="none"/>
+<circle cx="783.4" cy="383.0" r="5" fill="#1769AA" stroke="#1769AA"/>
+<text x="535.0" y="387.0" class="tiny mono" text-anchor="end">C 17.6% (1,354)</text>
+<rect x="70" y="406" width="1460" height="49" fill="#F7F8FA"/>
+<text x="92.0" y="434.0" class="label mono">write_sgr_colour</text>
+<text x="535.0" y="425.0" class="tiny mono" text-anchor="end">M absent</text>
+<line x1="560.0" y1="439.0" x2="687.4" y2="439.0" stroke="#1769AA" stroke-width="3" stroke-dasharray="none"/>
+<circle cx="687.4" cy="439.0" r="5" fill="#1769AA" stroke="#1769AA"/>
+<text x="535.0" y="443.0" class="tiny mono" text-anchor="end">C 10.0% (772)</text>
+<text x="92.0" y="490.0" class="label mono">write_u8_decimal</text>
+<text x="535.0" y="481.0" class="tiny mono" text-anchor="end">M absent</text>
+<line x1="560.0" y1="495.0" x2="648.1" y2="495.0" stroke="#1769AA" stroke-width="3" stroke-dasharray="none"/>
+<circle cx="648.1" cy="495.0" r="5" fill="#1769AA" stroke="#1769AA"/>
+<text x="535.0" y="499.0" class="tiny mono" text-anchor="end">C 6.9% (534)</text>
+<rect x="70" y="518" width="1460" height="49" fill="#F7F8FA"/>
+<text x="92.0" y="546.0" class="label mono">write_changed_cells</text>
+<line x1="560.0" y1="533.0" x2="565.8" y2="533.0" stroke="#343A40" stroke-width="3" stroke-dasharray="6 5"/>
+<rect x="560.8" y="528.0" width="10" height="10" fill="#FFFFFF" stroke="#343A40" stroke-width="2"/>
+<text x="535.0" y="537.0" class="tiny mono" text-anchor="end">M 0.5% (36)</text>
+<line x1="560.0" y1="551.0" x2="641.0" y2="551.0" stroke="#1769AA" stroke-width="3" stroke-dasharray="none"/>
+<circle cx="641.0" cy="551.0" r="5" fill="#1769AA" stroke="#1769AA"/>
+<text x="535.0" y="555.0" class="tiny mono" text-anchor="end">C 6.4% (491)</text>
+<text x="92.0" y="602.0" class="label mono">SgrStyleKey::from_cell</text>
+<text x="535.0" y="593.0" class="tiny mono" text-anchor="end">M absent</text>
+<line x1="560.0" y1="607.0" x2="640.3" y2="607.0" stroke="#1769AA" stroke-width="3" stroke-dasharray="none"/>
+<circle cx="640.3" cy="607.0" r="5" fill="#1769AA" stroke="#1769AA"/>
+<text x="535.0" y="611.0" class="tiny mono" text-anchor="end">C 6.3% (487)</text>
+<rect x="70" y="630" width="1460" height="49" fill="#F7F8FA"/>
+<text x="92.0" y="658.0" class="label mono">write_sgr_modifiers</text>
+<text x="535.0" y="649.0" class="tiny mono" text-anchor="end">M absent</text>
+<line x1="560.0" y1="663.0" x2="614.9" y2="663.0" stroke="#1769AA" stroke-width="3" stroke-dasharray="none"/>
+<circle cx="614.9" cy="663.0" r="5" fill="#1769AA" stroke="#1769AA"/>
+<text x="535.0" y="667.0" class="tiny mono" text-anchor="end">C 4.3% (333)</text>
+<text x="92.0" y="714.0" class="label mono">SgrColour::from_packed</text>
+<text x="535.0" y="705.0" class="tiny mono" text-anchor="end">M absent</text>
+<line x1="560.0" y1="719.0" x2="610.0" y2="719.0" stroke="#1769AA" stroke-width="3" stroke-dasharray="none"/>
+<circle cx="610.0" cy="719.0" r="5" fill="#1769AA" stroke="#1769AA"/>
+<text x="535.0" y="723.0" class="tiny mono" text-anchor="end">C 3.9% (303)</text>
+<rect x="70" y="742" width="1460" height="49" fill="#F7F8FA"/>
+<text x="92.0" y="770.0" class="label mono">write_hyperlink_if_changed</text>
+<line x1="560.0" y1="757.0" x2="562.3" y2="757.0" stroke="#343A40" stroke-width="3" stroke-dasharray="6 5"/>
+<rect x="557.3" y="752.0" width="10" height="10" fill="#FFFFFF" stroke="#343A40" stroke-width="2"/>
+<text x="535.0" y="761.0" class="tiny mono" text-anchor="end">M 0.2% (14)</text>
+<line x1="560.0" y1="775.0" x2="598.8" y2="775.0" stroke="#1769AA" stroke-width="3" stroke-dasharray="none"/>
+<circle cx="598.8" cy="775.0" r="5" fill="#1769AA" stroke="#1769AA"/>
+<text x="535.0" y="779.0" class="tiny mono" text-anchor="end">C 3.0% (235)</text>
+<text x="92.0" y="826.0" class="label mono">color_to_sgr_fg</text>
+<line x1="560.0" y1="813.0" x2="579.0" y2="813.0" stroke="#343A40" stroke-width="3" stroke-dasharray="6 5"/>
+<rect x="574.0" y="808.0" width="10" height="10" fill="#FFFFFF" stroke="#343A40" stroke-width="2"/>
+<text x="535.0" y="817.0" class="tiny mono" text-anchor="end">M 1.5% (118)</text>
+<text x="535.0" y="835.0" class="tiny mono" text-anchor="end">C absent</text>
+<rect x="70" y="854" width="1460" height="49" fill="#F7F8FA"/>
+<text x="92.0" y="882.0" class="label mono">wire::underline_style_from_modifier</text>
+<line x1="560.0" y1="869.0" x2="562.6" y2="869.0" stroke="#343A40" stroke-width="3" stroke-dasharray="6 5"/>
+<rect x="557.6" y="864.0" width="10" height="10" fill="#FFFFFF" stroke="#343A40" stroke-width="2"/>
+<text x="535.0" y="873.0" class="tiny mono" text-anchor="end">M 0.2% (16)</text>
+<line x1="560.0" y1="887.0" x2="575.2" y2="887.0" stroke="#1769AA" stroke-width="3" stroke-dasharray="none"/>
+<circle cx="575.2" cy="887.0" r="5" fill="#1769AA" stroke="#1769AA"/>
+<text x="535.0" y="891.0" class="tiny mono" text-anchor="end">C 1.2% (92)</text>
+<text x="92.0" y="938.0" class="label mono">modifier_to_sgr_parts</text>
+<line x1="560.0" y1="925.0" x2="573.5" y2="925.0" stroke="#343A40" stroke-width="3" stroke-dasharray="6 5"/>
+<rect x="568.5" y="920.0" width="10" height="10" fill="#FFFFFF" stroke="#343A40" stroke-width="2"/>
+<text x="535.0" y="929.0" class="tiny mono" text-anchor="end">M 1.1% (84)</text>
+<text x="535.0" y="947.0" class="tiny mono" text-anchor="end">C absent</text>
+<rect x="70" y="966" width="1460" height="49" fill="#F7F8FA"/>
+<text x="92.0" y="994.0" class="label mono">Other</text>
+<line x1="560.0" y1="981.0" x2="565.5" y2="981.0" stroke="#343A40" stroke-width="3" stroke-dasharray="6 5"/>
+<rect x="560.5" y="976.0" width="10" height="10" fill="#FFFFFF" stroke="#343A40" stroke-width="2"/>
+<text x="535.0" y="985.0" class="tiny mono" text-anchor="end">M 0.4% (34)</text>
+<line x1="560.0" y1="999.0" x2="567.6" y2="999.0" stroke="#1769AA" stroke-width="3" stroke-dasharray="none"/>
+<circle cx="567.6" cy="999.0" r="5" fill="#1769AA" stroke="#1769AA"/>
+<text x="535.0" y="1003.0" class="tiny mono" text-anchor="end">C 0.6% (46)</text>
+<text x="70.0" y="1062.0" class="small">Other groups target leaves below 0.5% individually plus non-target/unresolved samples. Full categories sum to 100.0% per trace.</text>
+<line x1="70.0" y1="1075.0" x2="1530.0" y2="1075.0" stroke="#D8DDE2" stroke-width="1"/>
+<text x="70.0" y="1098.0" class="tiny mono">master 06ca0baa12f4203c5bbad9ecadf53f9a475a52b2  |  candidate d00dc4813d6803ce4efa3e9ad7b1c3533512aaff</text>
+<text x="1530.0" y="1098.0" class="tiny" text-anchor="end">Xcode 26.6 Time Profiler | 8s each | 200×50 dense fixture | oracle 276444 B / edfa0379543ed13d</text>
+</svg>

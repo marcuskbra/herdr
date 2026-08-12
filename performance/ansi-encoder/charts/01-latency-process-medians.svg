@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1120" width="1600" height="1120" role="img" aria-labelledby="title desc">
+<title id="title">ANSI encoder process medians</title>
+<desc id="desc">Four aligned workload panels show three independent process medians per revision and each median-of-medians on a logarithmic latency axis.</desc>
+<style>
+text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; fill: #202428; }
+.mono { font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace; }
+.title { font-size: 30px; font-weight: 700; }
+.subtitle { font-size: 15px; fill: #59636E; }
+.panel-title { font-size: 19px; font-weight: 700; }
+.label { font-size: 14px; }
+.small { font-size: 12px; fill: #59636E; }
+.tiny { font-size: 11px; fill: #59636E; }
+.metric { font-size: 15px; font-weight: 700; }
+</style>
+<rect width="1600" height="1120" fill="#FFFFFF"/>
+<text x="70.0" y="58.0" class="title">ANSI encoder latency: independent process medians</text>
+<text x="70.0" y="88.0" class="subtitle">Lower is better. Log axis; each point is one fresh process median from 100 batches of 10 encodes.</text>
+<text x="70.0" y="119.0" class="small">Open squares / dashed: master. Blue circles / solid: candidate. Enlarged marker: median-of-medians.</text>
+<rect x="70" y="145" width="1460" height="200" rx="8" fill="#F7F8FA"/>
+<text x="92.0" y="176.0" class="panel-title">Dense colour</text>
+<text x="1505.0" y="176.0" class="metric" text-anchor="end">93.89% lower  |  16.36×</text>
+<line x1="360.0" y1="195.0" x2="360.0" y2="320.0" stroke="#D8DDE2" stroke-width="1"/>
+<text x="360.0" y="337.0" class="tiny" text-anchor="middle">20 µs</text>
+<line x1="474.1" y1="195.0" x2="474.1" y2="320.0" stroke="#D8DDE2" stroke-width="1"/>
+<text x="474.1" y="337.0" class="tiny" text-anchor="middle">50 µs</text>
+<line x1="560.5" y1="195.0" x2="560.5" y2="320.0" stroke="#D8DDE2" stroke-width="1"/>
+<text x="560.5" y="337.0" class="tiny" text-anchor="middle">100 µs</text>
+<line x1="646.8" y1="195.0" x2="646.8" y2="320.0" stroke="#D8DDE2" stroke-width="1"/>
+<text x="646.8" y="337.0" class="tiny" text-anchor="middle">200 µs</text>
+<line x1="761.0" y1="195.0" x2="761.0" y2="320.0" stroke="#D8DDE2" stroke-width="1"/>
+<text x="761.0" y="337.0" class="tiny" text-anchor="middle">500 µs</text>
+<line x1="847.3" y1="195.0" x2="847.3" y2="320.0" stroke="#D8DDE2" stroke-width="1"/>
+<text x="847.3" y="337.0" class="tiny" text-anchor="middle">1 ms</text>
+<line x1="933.7" y1="195.0" x2="933.7" y2="320.0" stroke="#D8DDE2" stroke-width="1"/>
+<text x="933.7" y="337.0" class="tiny" text-anchor="middle">2 ms</text>
+<line x1="1020.0" y1="195.0" x2="1020.0" y2="320.0" stroke="#D8DDE2" stroke-width="1"/>
+<text x="1020.0" y="337.0" class="tiny" text-anchor="middle">4 ms</text>
+<text x="92.0" y="237.0" class="label mono">master 06ca0baa</text>
+<line x1="979.9" y1="232.0" x2="983.9" y2="232.0" stroke="#343A40" stroke-width="2" stroke-dasharray="6 5"/>
+<rect x="975.9" y="223.0" width="8" height="8" fill="#FFFFFF" stroke="#343A40" stroke-width="2"/>
+<rect x="974.2" y="226.0" width="12" height="12" fill="#FFFFFF" stroke="#343A40" stroke-width="2.5"/>
+<rect x="979.9" y="233.0" width="8" height="8" fill="#FFFFFF" stroke="#343A40" stroke-width="2"/>
+<text x="1050.0" y="237.0" class="small mono">2,899,783, 2,904,975, 2,994,641 ns</text>
+<text x="1505.0" y="237.0" class="label mono" text-anchor="end">MoM 2,904,975 ns</text>
+<text x="92.0" y="295.0" class="label mono">candidate d00dc481</text>
+<line x1="631.8" y1="290.0" x2="636.2" y2="290.0" stroke="#1769AA" stroke-width="2" stroke-dasharray="none"/>
+<circle cx="631.8" cy="285.0" r="4.0" fill="#1769AA" stroke="#1769AA" stroke-width="2"/>
+<circle cx="632.0" cy="290.0" r="6.0" fill="#1769AA" stroke="#1769AA" stroke-width="2"/>
+<circle cx="636.2" cy="295.0" r="4.0" fill="#1769AA" stroke="#1769AA" stroke-width="2"/>
+<text x="1050.0" y="295.0" class="small mono">177,212, 177,608, 183,704 ns</text>
+<text x="1505.0" y="295.0" class="label mono" text-anchor="end">MoM 177,608 ns</text>
+<rect x="70" y="369" width="1460" height="200" rx="8" fill="#F7F8FA"/>
+<text x="92.0" y="400.0" class="panel-title">Plain scroll</text>
+<text x="1505.0" y="400.0" class="metric" text-anchor="end">95.16% lower  |  20.66×</text>
+<line x1="360.0" y1="419.0" x2="360.0" y2="544.0" stroke="#D8DDE2" stroke-width="1"/>
+<text x="360.0" y="561.0" class="tiny" text-anchor="middle">20 µs</text>
+<line x1="474.1" y1="419.0" x2="474.1" y2="544.0" stroke="#D8DDE2" stroke-width="1"/>
+<text x="474.1" y="561.0" class="tiny" text-anchor="middle">50 µs</text>
+<line x1="560.5" y1="419.0" x2="560.5" y2="544.0" stroke="#D8DDE2" stroke-width="1"/>
+<text x="560.5" y="561.0" class="tiny" text-anchor="middle">100 µs</text>
+<line x1="646.8" y1="419.0" x2="646.8" y2="544.0" stroke="#D8DDE2" stroke-width="1"/>
+<text x="646.8" y="561.0" class="tiny" text-anchor="middle">200 µs</text>
+<line x1="761.0" y1="419.0" x2="761.0" y2="544.0" stroke="#D8DDE2" stroke-width="1"/>
+<text x="761.0" y="561.0" class="tiny" text-anchor="middle">500 µs</text>
+<line x1="847.3" y1="419.0" x2="847.3" y2="544.0" stroke="#D8DDE2" stroke-width="1"/>
+<text x="847.3" y="561.0" class="tiny" text-anchor="middle">1 ms</text>
+<line x1="933.7" y1="419.0" x2="933.7" y2="544.0" stroke="#D8DDE2" stroke-width="1"/>
+<text x="933.7" y="561.0" class="tiny" text-anchor="middle">2 ms</text>
+<line x1="1020.0" y1="419.0" x2="1020.0" y2="544.0" stroke="#D8DDE2" stroke-width="1"/>
+<text x="1020.0" y="561.0" class="tiny" text-anchor="middle">4 ms</text>
+<text x="92.0" y="461.0" class="label mono">master 06ca0baa</text>
+<line x1="888.2" y1="456.0" x2="892.1" y2="456.0" stroke="#343A40" stroke-width="2" stroke-dasharray="6 5"/>
+<rect x="884.2" y="447.0" width="8" height="8" fill="#FFFFFF" stroke="#343A40" stroke-width="2"/>
+<rect x="882.9" y="450.0" width="12" height="12" fill="#FFFFFF" stroke="#343A40" stroke-width="2.5"/>
+<rect x="888.1" y="457.0" width="8" height="8" fill="#FFFFFF" stroke="#343A40" stroke-width="2"/>
+<text x="1050.0" y="461.0" class="small mono">1,388,770, 1,396,079, 1,432,137 ns</text>
+<text x="1505.0" y="461.0" class="label mono" text-anchor="end">MoM 1,396,079 ns</text>
+<text x="92.0" y="519.0" class="label mono">candidate d00dc481</text>
+<line x1="511.5" y1="514.0" x2="513.1" y2="514.0" stroke="#1769AA" stroke-width="2" stroke-dasharray="none"/>
+<circle cx="511.7" cy="509.0" r="6.0" fill="#1769AA" stroke="#1769AA" stroke-width="2"/>
+<circle cx="511.5" cy="514.0" r="4.0" fill="#1769AA" stroke="#1769AA" stroke-width="2"/>
+<circle cx="513.1" cy="519.0" r="4.0" fill="#1769AA" stroke="#1769AA" stroke-width="2"/>
+<text x="1050.0" y="519.0" class="small mono">67,583, 67,512, 68,370 ns</text>
+<text x="1505.0" y="519.0" class="label mono" text-anchor="end">MoM 67,583 ns</text>
+<rect x="70" y="593" width="1460" height="200" rx="8" fill="#F7F8FA"/>
+<text x="92.0" y="624.0" class="panel-title">Sparse edit</text>
+<text x="1505.0" y="624.0" class="metric" text-anchor="end">68.19% lower  |  3.14×</text>
+<line x1="360.0" y1="643.0" x2="360.0" y2="768.0" stroke="#D8DDE2" stroke-width="1"/>
+<text x="360.0" y="785.0" class="tiny" text-anchor="middle">20 µs</text>
+<line x1="474.1" y1="643.0" x2="474.1" y2="768.0" stroke="#D8DDE2" stroke-width="1"/>
+<text x="474.1" y="785.0" class="tiny" text-anchor="middle">50 µs</text>
+<line x1="560.5" y1="643.0" x2="560.5" y2="768.0" stroke="#D8DDE2" stroke-width="1"/>
+<text x="560.5" y="785.0" class="tiny" text-anchor="middle">100 µs</text>
+<line x1="646.8" y1="643.0" x2="646.8" y2="768.0" stroke="#D8DDE2" stroke-width="1"/>
+<text x="646.8" y="785.0" class="tiny" text-anchor="middle">200 µs</text>
+<line x1="761.0" y1="643.0" x2="761.0" y2="768.0" stroke="#D8DDE2" stroke-width="1"/>
+<text x="761.0" y="785.0" class="tiny" text-anchor="middle">500 µs</text>
+<line x1="847.3" y1="643.0" x2="847.3" y2="768.0" stroke="#D8DDE2" stroke-width="1"/>
+<text x="847.3" y="785.0" class="tiny" text-anchor="middle">1 ms</text>
+<line x1="933.7" y1="643.0" x2="933.7" y2="768.0" stroke="#D8DDE2" stroke-width="1"/>
+<text x="933.7" y="785.0" class="tiny" text-anchor="middle">2 ms</text>
+<line x1="1020.0" y1="643.0" x2="1020.0" y2="768.0" stroke="#D8DDE2" stroke-width="1"/>
+<text x="1020.0" y="785.0" class="tiny" text-anchor="middle">4 ms</text>
+<text x="92.0" y="685.0" class="label mono">master 06ca0baa</text>
+<line x1="558.7" y1="680.0" x2="563.0" y2="680.0" stroke="#343A40" stroke-width="2" stroke-dasharray="6 5"/>
+<rect x="554.7" y="671.0" width="8" height="8" fill="#FFFFFF" stroke="#343A40" stroke-width="2"/>
+<rect x="554.3" y="674.0" width="12" height="12" fill="#FFFFFF" stroke="#343A40" stroke-width="2.5"/>
+<rect x="559.0" y="681.0" width="8" height="8" fill="#FFFFFF" stroke="#343A40" stroke-width="2"/>
+<text x="1050.0" y="685.0" class="small mono">98,612, 99,825, 102,016 ns</text>
+<text x="1505.0" y="685.0" class="label mono" text-anchor="end">MoM 99,825 ns</text>
+<text x="92.0" y="743.0" class="label mono">candidate d00dc481</text>
+<line x1="417.3" y1="738.0" x2="419.5" y2="738.0" stroke="#1769AA" stroke-width="2" stroke-dasharray="none"/>
+<circle cx="417.3" cy="733.0" r="4.0" fill="#1769AA" stroke="#1769AA" stroke-width="2"/>
+<circle cx="419.5" cy="738.0" r="4.0" fill="#1769AA" stroke="#1769AA" stroke-width="2"/>
+<circle cx="417.6" cy="743.0" r="6.0" fill="#1769AA" stroke="#1769AA" stroke-width="2"/>
+<text x="1050.0" y="743.0" class="small mono">31,679, 32,233, 31,750 ns</text>
+<text x="1505.0" y="743.0" class="label mono" text-anchor="end">MoM 31,750 ns</text>
+<rect x="70" y="817" width="1460" height="200" rx="8" fill="#F7F8FA"/>
+<text x="92.0" y="848.0" class="panel-title">Full redraw</text>
+<text x="1505.0" y="848.0" class="metric" text-anchor="end">83.81% lower  |  6.18×</text>
+<line x1="360.0" y1="867.0" x2="360.0" y2="992.0" stroke="#D8DDE2" stroke-width="1"/>
+<text x="360.0" y="1009.0" class="tiny" text-anchor="middle">20 µs</text>
+<line x1="474.1" y1="867.0" x2="474.1" y2="992.0" stroke="#D8DDE2" stroke-width="1"/>
+<text x="474.1" y="1009.0" class="tiny" text-anchor="middle">50 µs</text>
+<line x1="560.5" y1="867.0" x2="560.5" y2="992.0" stroke="#D8DDE2" stroke-width="1"/>
+<text x="560.5" y="1009.0" class="tiny" text-anchor="middle">100 µs</text>
+<line x1="646.8" y1="867.0" x2="646.8" y2="992.0" stroke="#D8DDE2" stroke-width="1"/>
+<text x="646.8" y="1009.0" class="tiny" text-anchor="middle">200 µs</text>
+<line x1="761.0" y1="867.0" x2="761.0" y2="992.0" stroke="#D8DDE2" stroke-width="1"/>
+<text x="761.0" y="1009.0" class="tiny" text-anchor="middle">500 µs</text>
+<line x1="847.3" y1="867.0" x2="847.3" y2="992.0" stroke="#D8DDE2" stroke-width="1"/>
+<text x="847.3" y="1009.0" class="tiny" text-anchor="middle">1 ms</text>
+<line x1="933.7" y1="867.0" x2="933.7" y2="992.0" stroke="#D8DDE2" stroke-width="1"/>
+<text x="933.7" y="1009.0" class="tiny" text-anchor="middle">2 ms</text>
+<line x1="1020.0" y1="867.0" x2="1020.0" y2="992.0" stroke="#D8DDE2" stroke-width="1"/>
+<text x="1020.0" y="1009.0" class="tiny" text-anchor="middle">4 ms</text>
+<text x="92.0" y="909.0" class="label mono">master 06ca0baa</text>
+<line x1="892.9" y1="904.0" x2="896.0" y2="904.0" stroke="#343A40" stroke-width="2" stroke-dasharray="6 5"/>
+<rect x="888.9" y="895.0" width="8" height="8" fill="#FFFFFF" stroke="#343A40" stroke-width="2"/>
+<rect x="887.0" y="898.0" width="12" height="12" fill="#FFFFFF" stroke="#343A40" stroke-width="2.5"/>
+<rect x="892.0" y="905.0" width="8" height="8" fill="#FFFFFF" stroke="#343A40" stroke-width="2"/>
+<text x="1050.0" y="909.0" class="small mono">1,441,491, 1,442,512, 1,477,879 ns</text>
+<text x="1505.0" y="909.0" class="label mono" text-anchor="end">MoM 1,442,512 ns</text>
+<text x="92.0" y="967.0" class="label mono">candidate d00dc481</text>
+<line x1="664.0" y1="962.0" x2="666.6" y2="962.0" stroke="#1769AA" stroke-width="2" stroke-dasharray="none"/>
+<circle cx="664.0" cy="957.0" r="4.0" fill="#1769AA" stroke="#1769AA" stroke-width="2"/>
+<circle cx="666.1" cy="962.0" r="6.0" fill="#1769AA" stroke="#1769AA" stroke-width="2"/>
+<circle cx="666.6" cy="967.0" r="4.0" fill="#1769AA" stroke="#1769AA" stroke-width="2"/>
+<text x="1050.0" y="967.0" class="small mono">229,554, 233,545, 234,404 ns</text>
+<text x="1505.0" y="967.0" class="label mono" text-anchor="end">MoM 233,545 ns</text>
+<text x="70.0" y="1060.0" class="small">Protocol: 200×50 workloads; 20 warm-ups; 3 fresh processes/revision; 100 timed batches/process; 10 encodes/batch; 30 s pre-process cooldown; counterbalanced order.</text>
+<metadata>{&quot;results_json_sha256&quot;: &quot;19e4ba5752682381aa6034c13f538d5990113c0a94c7727dc03370173951ce5d&quot;}</metadata>
+<line x1="70.0" y1="1072.0" x2="1530.0" y2="1072.0" stroke="#D8DDE2" stroke-width="1"/>
+<text x="70.0" y="1095.0" class="small mono">master 06ca0baa  |  candidate d00dc481</text>
+<text x="1530.0" y="1095.0" class="tiny mono" text-anchor="end">audit SHA-256 19e4ba575268...</text>
+</svg>

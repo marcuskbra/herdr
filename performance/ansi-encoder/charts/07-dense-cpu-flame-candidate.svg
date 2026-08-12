@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 850" width="1600" height="850" role="img" aria-labelledby="title desc">
+<title id="title">Dense ANSI CPU flame summary: candidate</title>
+<desc id="desc">Actual call-tree hierarchy from sanitized native Time Profiler stacks. Widths are independently normalized CPU sample shares.</desc>
+<style>
+text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; fill: #202428; }
+.mono { font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace; }
+.title { font-size: 29px; font-weight: 700; }
+.subtitle { font-size: 15px; fill: #59636E; }
+.label { font-size: 14px; }
+.small { font-size: 12px; fill: #59636E; }
+.tiny { font-size: 11px; fill: #59636E; }
+.value { font-size: 13px; font-weight: 700; }
+</style>
+<rect width="1600" height="850" fill="#FFFFFF"/>
+<text x="70.0" y="56.0" class="title">Dense ANSI CPU flame summary: candidate</text>
+<text x="70.0" y="84.0" class="subtitle">Actual native call-tree hierarchy, cropped at ansi_instruments_probe. Width = CPU sample share, not wall-clock speedup.</text>
+<text x="70.0" y="111.0" class="small mono">master: 7,894 samples / 7.896s / trace 078ec1c77aec...</text>
+<text x="805.0" y="111.0" class="small mono">candidate: 7,707 samples / 8.091s / trace 39517d50ff32...</text>
+<text x="70.0" y="143.0" class="small">7,707 samples; independent normalization within this trace. Rectangles under 3 px are retained in ancestor widths but not drawn.</text>
+<g><title>herdr::protocol::render_ansi::tests::ansi_instruments_probe::_$u7b$$u7b$closure$u7d$$u7d$ - 7,707 samples (100.0%)</title>
+<rect x="70.00" y="758.0" width="1460.00" height="27" fill="#DDECF8" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-candidate-0"><rect x="73.00" y="758.0" width="1454.00" height="27"/></clipPath>
+<text x="75.0" y="776.0" class="tiny mono" style="fill:#202428" clip-path="url(#clip-candidate-0)">tests::ansi_instruments_probe::{closure}</text>
+</g>
+<g><title>herdr::protocol::render_ansi::BlitEncoder::encode - 7,682 samples (99.7%)</title>
+<rect x="70.00" y="728.0" width="1455.26" height="27" fill="#B8D7EF" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-candidate-1"><rect x="73.00" y="728.0" width="1449.26" height="27"/></clipPath>
+<text x="75.0" y="746.0" class="tiny mono" style="fill:#202428" clip-path="url(#clip-candidate-1)">BlitEncoder::encode</text>
+</g>
+<g><title>herdr::protocol::render_ansi::BlitEncoder::encode_inner - 7,682 samples (99.7%)</title>
+<rect x="70.00" y="698.0" width="1455.26" height="27" fill="#8DC0E5" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-candidate-2"><rect x="73.00" y="698.0" width="1449.26" height="27"/></clipPath>
+<text x="75.0" y="716.0" class="tiny mono" style="fill:#202428" clip-path="url(#clip-candidate-2)">BlitEncoder::encode_inner</text>
+</g>
+<g><title>herdr::protocol::render_ansi::write_cell - 4,770 samples (61.9%)</title>
+<rect x="70.00" y="668.0" width="903.62" height="27" fill="#5A9BD4" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-candidate-3"><rect x="73.00" y="668.0" width="897.62" height="27"/></clipPath>
+<text x="75.0" y="686.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-candidate-3)">write_cell</text>
+</g>
+<g><title>herdr::protocol::render_ansi::write_sgr - 2,555 samples (33.2%)</title>
+<rect x="70.00" y="638.0" width="484.01" height="27" fill="#1769AA" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-candidate-4"><rect x="73.00" y="638.0" width="478.01" height="27"/></clipPath>
+<text x="75.0" y="656.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-candidate-4)">write_sgr</text>
+</g>
+<g><title>alloc::raw_vec::RawVecInner$LT$A$GT$::capacity - 781 samples (10.1%)</title>
+<rect x="70.00" y="608.0" width="147.95" height="27" fill="#1769AA" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-candidate-5"><rect x="73.00" y="608.0" width="141.95" height="27"/></clipPath>
+<text x="75.0" y="626.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-candidate-5)">alloc::raw_vec::RawVecInner$LT$A$GT$::capacity</text>
+</g>
+<g><title>herdr::protocol::render_ansi::write_u8_decimal - 534 samples (6.9%)</title>
+<rect x="217.95" y="608.0" width="101.16" height="27" fill="#1769AA" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-candidate-6"><rect x="220.95" y="608.0" width="95.16" height="27"/></clipPath>
+<text x="223.0" y="626.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-candidate-6)">write_u8_decimal</text>
+</g>
+<g><title>herdr::protocol::render_ansi::write_sgr_colour - 454 samples (5.9%)</title>
+<rect x="319.11" y="608.0" width="86.00" height="27" fill="#1769AA" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-candidate-7"><rect x="322.11" y="608.0" width="80.00" height="27"/></clipPath>
+<text x="324.1" y="626.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-candidate-7)">write_sgr_colour</text>
+</g>
+<g><title>alloc::vec::Vec$LT$T$C$A$GT$::append_elements - 240 samples (3.1%)</title>
+<rect x="405.12" y="608.0" width="45.47" height="27" fill="#1769AA" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-candidate-8"><rect x="408.12" y="608.0" width="39.47" height="27"/></clipPath>
+<text x="410.1" y="626.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-candidate-8)">alloc::vec::Vec$LT$T$C$A$GT$::append_elements</text>
+</g>
+<g><title>core::ptr::copy_nonoverlapping - 229 samples (3.0%)</title>
+<rect x="450.58" y="608.0" width="43.38" height="27" fill="#1769AA" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-candidate-9"><rect x="453.58" y="608.0" width="37.38" height="27"/></clipPath>
+<text x="455.6" y="626.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-candidate-9)">core::ptr::copy_nonoverlapping</text>
+</g>
+<g><title>compiler_rt.memcpy.copyLessThan16 - 74 samples (1.0%)</title>
+<rect x="450.58" y="578.0" width="14.02" height="27" fill="#1769AA" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>compiler_rt.memcpy.copySmallLength - 60 samples (0.8%)</title>
+<rect x="464.60" y="578.0" width="11.37" height="27" fill="#1769AA" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>compiler_rt.memcpy.copyFixedLength - 55 samples (0.7%)</title>
+<rect x="475.97" y="578.0" width="10.42" height="27" fill="#1769AA" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>compiler_rt.memcpy.copyRange4 - 30 samples (0.4%)</title>
+<rect x="486.39" y="578.0" width="5.68" height="27" fill="#1769AA" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>alloc::raw_vec::RawVecInner$LT$A$GT$::reserve - 113 samples (1.5%)</title>
+<rect x="493.96" y="608.0" width="21.41" height="27" fill="#1769AA" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>alloc::raw_vec::RawVecInner$LT$A$GT$::grow_amortized - 52 samples (0.7%)</title>
+<rect x="493.96" y="578.0" width="9.85" height="27" fill="#1769AA" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RNvNtCsdBofyk9Yr2t_5alloc5alloc15realloc_nonnull - 52 samples (0.7%)</title>
+<rect x="493.96" y="548.0" width="9.85" height="27" fill="#1769AA" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_realloc - 51 samples (0.7%)</title>
+<rect x="493.96" y="518.0" width="9.66" height="27" fill="#1769AA" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_malloc_zone_realloc - 51 samples (0.7%)</title>
+<rect x="493.96" y="488.0" width="9.66" height="27" fill="#1769AA" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>xzm_realloc - 50 samples (0.6%)</title>
+<rect x="493.96" y="458.0" width="9.47" height="27" fill="#1769AA" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_platform_memmove - 25 samples (0.3%)</title>
+<rect x="493.96" y="428.0" width="4.74" height="27" fill="#1769AA" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RNvXs14_NtNtCsitGFVNq7Ifu_4core7convert3numjINtB8_4FromhE4from - 76 samples (1.0%)</title>
+<rect x="515.37" y="608.0" width="14.40" height="27" fill="#1769AA" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>alloc::raw_vec::RawVecInner$LT$A$GT$::capacity - 532 samples (6.9%)</title>
+<rect x="554.01" y="638.0" width="100.78" height="27" fill="#1769AA" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-candidate-10"><rect x="557.01" y="638.0" width="94.78" height="27"/></clipPath>
+<text x="559.0" y="656.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-candidate-10)">alloc::raw_vec::RawVecInner$LT$A$GT$::capacity</text>
+</g>
+<g><title>herdr::protocol::render_ansi::write_sgr_modifiers - 333 samples (4.3%)</title>
+<rect x="654.80" y="638.0" width="63.08" height="27" fill="#1769AA" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-candidate-11"><rect x="657.80" y="638.0" width="57.08" height="27"/></clipPath>
+<text x="659.8" y="656.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-candidate-11)">write_sgr_modifiers</text>
+</g>
+<g><title>herdr::protocol::render_ansi::write_sgr_colour - 318 samples (4.1%)</title>
+<rect x="717.88" y="638.0" width="60.24" height="27" fill="#1769AA" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-candidate-12"><rect x="720.88" y="638.0" width="54.24" height="27"/></clipPath>
+<text x="722.9" y="656.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-candidate-12)">write_sgr_colour</text>
+</g>
+<g><title>core::ptr::copy_nonoverlapping - 224 samples (2.9%)</title>
+<rect x="778.12" y="638.0" width="42.43" height="27" fill="#1769AA" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-candidate-13"><rect x="781.12" y="638.0" width="36.43" height="27"/></clipPath>
+<text x="783.1" y="656.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-candidate-13)">core::ptr::copy_nonoverlapping</text>
+</g>
+<g><title>compiler_rt.memcpy.copyFixedLength - 108 samples (1.4%)</title>
+<rect x="778.12" y="608.0" width="20.46" height="27" fill="#1769AA" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>compiler_rt.memcpy.copySmallLength - 94 samples (1.2%)</title>
+<rect x="798.58" y="608.0" width="17.81" height="27" fill="#1769AA" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>compiler_rt.memcpy.copyLessThan16 - 18 samples (0.2%)</title>
+<rect x="816.39" y="608.0" width="3.41" height="27" fill="#1769AA" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>herdr::protocol::render_ansi::write_hyperlink_if_changed - 121 samples (1.6%)</title>
+<rect x="820.55" y="638.0" width="22.92" height="27" fill="#1769AA" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>alloc::vec::Vec$LT$T$C$A$GT$::reserve - 103 samples (1.3%)</title>
+<rect x="843.48" y="638.0" width="19.51" height="27" fill="#1769AA" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>herdr::protocol::wire::underline_style_from_modifier - 82 samples (1.1%)</title>
+<rect x="862.99" y="638.0" width="15.53" height="27" fill="#1769AA" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>alloc::raw_vec::RawVecInner$LT$A$GT$::reserve - 47 samples (0.6%)</title>
+<rect x="878.52" y="638.0" width="8.90" height="27" fill="#1769AA" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>alloc::raw_vec::RawVecInner$LT$A$GT$::grow_amortized - 45 samples (0.6%)</title>
+<rect x="878.52" y="608.0" width="8.52" height="27" fill="#1769AA" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RNvNtCsdBofyk9Yr2t_5alloc5alloc15realloc_nonnull - 45 samples (0.6%)</title>
+<rect x="878.52" y="578.0" width="8.52" height="27" fill="#1769AA" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_realloc - 44 samples (0.6%)</title>
+<rect x="878.52" y="548.0" width="8.34" height="27" fill="#1769AA" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_malloc_zone_realloc - 43 samples (0.6%)</title>
+<rect x="878.52" y="518.0" width="8.15" height="27" fill="#1769AA" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>xzm_realloc - 43 samples (0.6%)</title>
+<rect x="878.52" y="488.0" width="8.15" height="27" fill="#1769AA" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>xzm_segment_group_try_realloc_large_chunk - 24 samples (0.3%)</title>
+<rect x="878.52" y="458.0" width="4.55" height="27" fill="#1769AA" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_xzm_segment_group_span_mark_smaller - 24 samples (0.3%)</title>
+<rect x="878.52" y="428.0" width="4.55" height="27" fill="#1769AA" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>mach_vm_reclaim_update_kernel_accounting - 19 samples (0.2%)</title>
+<rect x="878.52" y="398.0" width="3.60" height="27" fill="#1769AA" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>mach_vm_reclaim_update_kernel_accounting_trap - 18 samples (0.2%)</title>
+<rect x="878.52" y="368.0" width="3.41" height="27" fill="#1769AA" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RNvMs9_NtCsitGFVNq7Ifu_4core3numj12wrapping_sub - 46 samples (0.6%)</title>
+<rect x="887.43" y="638.0" width="8.71" height="27" fill="#1769AA" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>core::option::Option$LT$T$GT$::as_ref - 19 samples (0.2%)</title>
+<rect x="896.14" y="638.0" width="3.60" height="27" fill="#1769AA" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>herdr::protocol::render_ansi::write_changed_cells - 491 samples (6.4%)</title>
+<rect x="973.62" y="668.0" width="93.01" height="27" fill="#5A9BD4" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-candidate-14"><rect x="976.62" y="668.0" width="87.01" height="27"/></clipPath>
+<text x="978.6" y="686.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-candidate-14)">write_changed_cells</text>
+</g>
+<g><title>herdr::protocol::render_ansi::SgrStyleKey::from_cell - 487 samples (6.3%)</title>
+<rect x="1066.63" y="668.0" width="92.26" height="27" fill="#5A9BD4" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-candidate-15"><rect x="1069.63" y="668.0" width="86.26" height="27"/></clipPath>
+<text x="1071.6" y="686.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-candidate-15)">SgrStyleKey::from_cell</text>
+</g>
+<g><title>herdr::protocol::render_ansi::SgrColour::from_packed - 303 samples (3.9%)</title>
+<rect x="1158.89" y="668.0" width="57.40" height="27" fill="#5A9BD4" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-candidate-16"><rect x="1161.89" y="668.0" width="51.40" height="27"/></clipPath>
+<text x="1163.9" y="686.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-candidate-16)">SgrColour::from_packed</text>
+</g>
+<g><title>_$LT$A$u20$as$u20$core..slice..cmp..SlicePartialEq$LT$B$GT$$GT$::equal_same_length - 224 samples (2.9%)</title>
+<rect x="1216.29" y="668.0" width="42.43" height="27" fill="#5A9BD4" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-candidate-17"><rect x="1219.29" y="668.0" width="36.43" height="27"/></clipPath>
+<text x="1221.3" y="686.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-candidate-17)">_$LT$A$u20$as$u20$core..slice..cmp..SlicePartialEq$LT$B$GT$$GT$::equal_same_length</text>
+</g>
+<g><title>memcmp - 224 samples (2.9%)</title>
+<rect x="1216.29" y="638.0" width="42.43" height="27" fill="#1769AA" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-candidate-18"><rect x="1219.29" y="638.0" width="36.43" height="27"/></clipPath>
+<text x="1221.3" y="656.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-candidate-18)">memcmp</text>
+</g>
+<g><title>core::ptr::copy_nonoverlapping - 214 samples (2.8%)</title>
+<rect x="1258.72" y="668.0" width="40.54" height="27" fill="#5A9BD4" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-candidate-19"><rect x="1261.72" y="668.0" width="34.54" height="27"/></clipPath>
+<text x="1263.7" y="686.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-candidate-19)">core::ptr::copy_nonoverlapping</text>
+</g>
+<g><title>compiler_rt.memcpy.copyLessThan16 - 118 samples (1.5%)</title>
+<rect x="1258.72" y="638.0" width="22.35" height="27" fill="#1769AA" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>compiler_rt.memcpy.copySmallLength - 96 samples (1.2%)</title>
+<rect x="1281.08" y="638.0" width="18.19" height="27" fill="#1769AA" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RNvMs4_NtCsitGFVNq7Ifu_4core3numh16is_ascii_control - 175 samples (2.3%)</title>
+<rect x="1299.26" y="668.0" width="33.15" height="27" fill="#5A9BD4" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_$LT$core..ops..range..Range$LT$T$GT$$u20$as$u20$core..iter..range..RangeIteratorImpl$GT$::spec_next - 134 samples (1.7%)</title>
+<rect x="1332.42" y="668.0" width="25.38" height="27" fill="#5A9BD4" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>herdr::protocol::render_ansi::write_sgr - 132 samples (1.7%)</title>
+<rect x="1357.80" y="668.0" width="25.01" height="27" fill="#5A9BD4" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_$LT$core..option..Option$LT$T$GT$$u20$as$u20$core..ops..try_trait..Try$GT$::branch - 120 samples (1.6%)</title>
+<rect x="1382.81" y="668.0" width="22.73" height="27" fill="#5A9BD4" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>alloc::raw_vec::RawVecInner$LT$A$GT$::non_null - 120 samples (1.6%)</title>
+<rect x="1405.54" y="668.0" width="22.73" height="27" fill="#5A9BD4" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>herdr::protocol::render_ansi::write_hyperlink_if_changed - 114 samples (1.5%)</title>
+<rect x="1428.27" y="668.0" width="21.60" height="27" fill="#5A9BD4" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>alloc::raw_vec::RawVecInner$LT$A$GT$::capacity - 101 samples (1.3%)</title>
+<rect x="1449.87" y="668.0" width="19.13" height="27" fill="#5A9BD4" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RNvMs9_NtCsitGFVNq7Ifu_4core3numj14saturating_sub - 95 samples (1.2%)</title>
+<rect x="1469.00" y="668.0" width="18.00" height="27" fill="#5A9BD4" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RNvMs4_NtCsitGFVNq7Ifu_4core3numh8is_ascii - 78 samples (1.0%)</title>
+<rect x="1487.00" y="668.0" width="14.78" height="27" fill="#5A9BD4" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>std::io::default_write_fmt - 36 samples (0.5%)</title>
+<rect x="1501.77" y="668.0" width="6.82" height="27" fill="#5A9BD4" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RNvMNtNtCsitGFVNq7Ifu_4core3fmt2rtNtB2_8Argument3fmt - 26 samples (0.3%)</title>
+<rect x="1501.77" y="638.0" width="4.93" height="27" fill="#1769AA" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RNvXs3_NtNtNtCsitGFVNq7Ifu_4core3fmt3num3imptNtB9_7Display3fmt - 18 samples (0.2%)</title>
+<rect x="1501.77" y="608.0" width="3.41" height="27" fill="#1769AA" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>alloc::vec::Vec$LT$T$C$A$GT$::append_elements - 19 samples (0.2%)</title>
+<rect x="1508.59" y="668.0" width="3.60" height="27" fill="#5A9BD4" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RNvNtCsdBofyk9Yr2t_5alloc5alloc15dealloc_nonnull - 23 samples (0.3%)</title>
+<rect x="1525.26" y="728.0" width="4.36" height="27" fill="#B8D7EF" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>xzm_segment_group_free_chunk - 22 samples (0.3%)</title>
+<rect x="1525.26" y="698.0" width="4.17" height="27" fill="#8DC0E5" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<text x="70.0" y="792.0" class="small">Source: sanitized collapsed native stacks (root-to-leaf). Outer Rust test-harness frames are cropped; no stack frames are inferred or fabricated.</text>
+<line x1="70.0" y1="805.0" x2="1530.0" y2="805.0" stroke="#D8DDE2" stroke-width="1"/>
+<text x="70.0" y="828.0" class="tiny mono">master 06ca0baa12f4203c5bbad9ecadf53f9a475a52b2  |  candidate d00dc4813d6803ce4efa3e9ad7b1c3533512aaff</text>
+<text x="1530.0" y="828.0" class="tiny" text-anchor="end">Xcode 26.6 Time Profiler | 8s each | 200×50 dense fixture | oracle 276444 B / edfa0379543ed13d</text>
+</svg>

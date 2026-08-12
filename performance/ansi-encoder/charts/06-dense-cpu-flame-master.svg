@@ -1,0 +1,676 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 850" width="1600" height="850" role="img" aria-labelledby="title desc">
+<title id="title">Dense ANSI CPU flame summary: master</title>
+<desc id="desc">Actual call-tree hierarchy from sanitized native Time Profiler stacks. Widths are independently normalized CPU sample shares.</desc>
+<style>
+text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; fill: #202428; }
+.mono { font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace; }
+.title { font-size: 29px; font-weight: 700; }
+.subtitle { font-size: 15px; fill: #59636E; }
+.label { font-size: 14px; }
+.small { font-size: 12px; fill: #59636E; }
+.tiny { font-size: 11px; fill: #59636E; }
+.value { font-size: 13px; font-weight: 700; }
+</style>
+<rect width="1600" height="850" fill="#FFFFFF"/>
+<text x="70.0" y="56.0" class="title">Dense ANSI CPU flame summary: master</text>
+<text x="70.0" y="84.0" class="subtitle">Actual native call-tree hierarchy, cropped at ansi_instruments_probe. Width = CPU sample share, not wall-clock speedup.</text>
+<text x="70.0" y="111.0" class="small mono">master: 7,894 samples / 7.896s / trace 078ec1c77aec...</text>
+<text x="805.0" y="111.0" class="small mono">candidate: 7,707 samples / 8.091s / trace 39517d50ff32...</text>
+<text x="70.0" y="143.0" class="small">7,894 samples; independent normalization within this trace. Rectangles under 3 px are retained in ancestor widths but not drawn.</text>
+<g><title>herdr::protocol::render_ansi::tests::ansi_instruments_probe::_$u7b$$u7b$closure$u7d$$u7d$ - 7,894 samples (100.0%)</title>
+<rect x="70.00" y="758.0" width="1460.00" height="27" fill="#E4E7EA" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-master-0"><rect x="73.00" y="758.0" width="1454.00" height="27"/></clipPath>
+<text x="75.0" y="776.0" class="tiny mono" style="fill:#202428" clip-path="url(#clip-master-0)">tests::ansi_instruments_probe::{closure}</text>
+</g>
+<g><title>herdr::protocol::render_ansi::BlitEncoder::encode - 7,892 samples (100.0%)</title>
+<rect x="70.00" y="728.0" width="1459.63" height="27" fill="#C9CED3" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-master-1"><rect x="73.00" y="728.0" width="1453.63" height="27"/></clipPath>
+<text x="75.0" y="746.0" class="tiny mono" style="fill:#202428" clip-path="url(#clip-master-1)">BlitEncoder::encode</text>
+</g>
+<g><title>herdr::protocol::render_ansi::BlitEncoder::encode_inner - 7,892 samples (100.0%)</title>
+<rect x="70.00" y="698.0" width="1459.63" height="27" fill="#ADB5BD" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-master-2"><rect x="73.00" y="698.0" width="1453.63" height="27"/></clipPath>
+<text x="75.0" y="716.0" class="tiny mono" style="fill:#202428" clip-path="url(#clip-master-2)">BlitEncoder::encode_inner</text>
+</g>
+<g><title>herdr::protocol::render_ansi::write_cell - 7,270 samples (92.1%)</title>
+<rect x="70.00" y="668.0" width="1344.59" height="27" fill="#868E96" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-master-3"><rect x="73.00" y="668.0" width="1338.59" height="27"/></clipPath>
+<text x="75.0" y="686.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-master-3)">write_cell</text>
+</g>
+<g><title>herdr::protocol::render_ansi::build_sgr - 1,901 samples (24.1%)</title>
+<rect x="70.00" y="638.0" width="351.59" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-master-4"><rect x="73.00" y="638.0" width="345.59" height="27"/></clipPath>
+<text x="75.0" y="656.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-master-4)">build_sgr</text>
+</g>
+<g><title>alloc::fmt::format::_$u7b$$u7b$closure$u7d$$u7d$ - 1,302 samples (16.5%)</title>
+<rect x="70.00" y="608.0" width="240.81" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-master-5"><rect x="73.00" y="608.0" width="234.81" height="27"/></clipPath>
+<text x="75.0" y="626.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-master-5)">alloc::fmt::format::{closure}</text>
+</g>
+<g><title>_RNvXs_NvNtNtCsitGFVNq7Ifu_4core3fmt5Write9write_fmtQNtNtCsdBofyk9Yr2t_5alloc6string6StringNtB4_12SpecWriteFmt14spec_write_fmtBS_ - 975 samples (12.4%)</title>
+<rect x="70.00" y="578.0" width="180.33" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-master-6"><rect x="73.00" y="578.0" width="174.33" height="27"/></clipPath>
+<text x="75.0" y="596.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-master-6)">_RNvXs_NvNtNtCsitGFVNq7Ifu_4core3fmt5Write9write_fmtQNtNtCsdBofyk9Yr2t_5alloc6string6StringNtB4_12SpecWriteFmt14spec_write_fmtBS_</text>
+</g>
+<g><title>_RNvMNtNtCsitGFVNq7Ifu_4core3fmt2rtNtB2_8Argument3fmt - 783 samples (9.9%)</title>
+<rect x="70.00" y="548.0" width="144.82" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-master-7"><rect x="73.00" y="548.0" width="138.82" height="27"/></clipPath>
+<text x="75.0" y="566.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-master-7)">_RNvMNtNtCsitGFVNq7Ifu_4core3fmt2rtNtB2_8Argument3fmt</text>
+</g>
+<g><title>_RNvXs8_NtNtNtCsitGFVNq7Ifu_4core3fmt3num3impmNtB9_7Display3fmt - 533 samples (6.8%)</title>
+<rect x="70.00" y="518.0" width="98.58" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-master-8"><rect x="73.00" y="518.0" width="92.58" height="27"/></clipPath>
+<text x="75.0" y="536.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-master-8)">_RNvXs8_NtNtNtCsitGFVNq7Ifu_4core3fmt3num3impmNtB9_7Display3fmt</text>
+</g>
+<g><title>_RNvMs2_NtCsdBofyk9Yr2t_5alloc7raw_vecNtB5_11RawVecInner7reserveB7_ - 273 samples (3.5%)</title>
+<rect x="70.00" y="488.0" width="50.49" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-master-9"><rect x="73.00" y="488.0" width="44.49" height="27"/></clipPath>
+<text x="75.0" y="506.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-master-9)">_RNvMs2_NtCsdBofyk9Yr2t_5alloc7raw_vecNtB5_11RawVecInner7reserveB7_</text>
+</g>
+<g><title>_RNvMs4_NtCsdBofyk9Yr2t_5alloc7raw_vecNtB5_11RawVecInner14grow_amortizedB7_ - 258 samples (3.3%)</title>
+<rect x="70.00" y="458.0" width="47.72" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-master-10"><rect x="73.00" y="458.0" width="41.72" height="27"/></clipPath>
+<text x="75.0" y="476.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-master-10)">_RNvMs4_NtCsdBofyk9Yr2t_5alloc7raw_vecNtB5_11RawVecInner14grow_amortizedB7_</text>
+</g>
+<g><title>_RNvNtCsdBofyk9Yr2t_5alloc5alloc15realloc_nonnull - 246 samples (3.1%)</title>
+<rect x="70.00" y="428.0" width="45.50" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-master-11"><rect x="73.00" y="428.0" width="39.50" height="27"/></clipPath>
+<text x="75.0" y="446.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-master-11)">_RNvNtCsdBofyk9Yr2t_5alloc5alloc15realloc_nonnull</text>
+</g>
+<g><title>_realloc - 229 samples (2.9%)</title>
+<rect x="70.00" y="398.0" width="42.35" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-master-12"><rect x="73.00" y="398.0" width="36.35" height="27"/></clipPath>
+<text x="75.0" y="416.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-master-12)">_realloc</text>
+</g>
+<g><title>_malloc_zone_realloc - 169 samples (2.1%)</title>
+<rect x="70.00" y="368.0" width="31.26" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>xzm_realloc - 139 samples (1.8%)</title>
+<rect x="70.00" y="338.0" width="25.71" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_xzm_free - 25 samples (0.3%)</title>
+<rect x="70.00" y="308.0" width="4.62" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_xzm_xzone_malloc - 22 samples (0.3%)</title>
+<rect x="74.62" y="308.0" width="4.07" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>xzm_malloc_zone_size - 41 samples (0.5%)</title>
+<rect x="101.26" y="368.0" width="7.58" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RNvMsa_NtCsitGFVNq7Ifu_4core3fmtNtB5_9Formatter12pad_integral - 124 samples (1.6%)</title>
+<rect x="120.49" y="488.0" width="22.93" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RNvNvMsa_NtCsitGFVNq7Ifu_4core3fmtNtB7_9Formatter12pad_integral12write_prefix - 20 samples (0.3%)</title>
+<rect x="120.49" y="458.0" width="3.70" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RINvNtCsitGFVNq7Ifu_4core3ptr19copy_nonoverlappinghECsdBofyk9Yr2t_5alloc - 34 samples (0.4%)</title>
+<rect x="143.43" y="488.0" width="6.29" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>compiler_rt.memcpy.copyLessThan16 - 21 samples (0.3%)</title>
+<rect x="143.43" y="458.0" width="3.88" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RNvMs2_NtCsdBofyk9Yr2t_5alloc7raw_vecNtB5_11RawVecInner8capacityB7_ - 30 samples (0.4%)</title>
+<rect x="149.71" y="488.0" width="5.55" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RNvNvMsa_NtCsitGFVNq7Ifu_4core3fmtNtB7_9Formatter12pad_integral12write_prefix - 24 samples (0.3%)</title>
+<rect x="155.26" y="488.0" width="4.44" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RNvMsa_NtNtNtCsitGFVNq7Ifu_4core3fmt3num3impm4__fmt - 118 samples (1.5%)</title>
+<rect x="168.58" y="518.0" width="21.82" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RNvMsa_NtNtNtCsitGFVNq7Ifu_4core3fmt3num3impm10__fmt_inner - 51 samples (0.6%)</title>
+<rect x="190.40" y="518.0" width="9.43" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RNvMs1_NtNtCsitGFVNq7Ifu_4core3mem12maybe_uninitINtB5_11MaybeUninithE5writeB9_ - 28 samples (0.4%)</title>
+<rect x="199.84" y="518.0" width="5.18" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RNvMsa_NtCsitGFVNq7Ifu_4core3fmtNtB5_9Formatter12pad_integral - 23 samples (0.3%)</title>
+<rect x="205.01" y="518.0" width="4.25" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RNvXsZ_NtCsdBofyk9Yr2t_5alloc6stringNtB5_6StringNtNtCsitGFVNq7Ifu_4core3fmt5Write9write_str - 17 samples (0.2%)</title>
+<rect x="209.27" y="518.0" width="3.14" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RNvNtCsitGFVNq7Ifu_4core3fmt5write - 144 samples (1.8%)</title>
+<rect x="214.82" y="548.0" width="26.63" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RINvNtCsitGFVNq7Ifu_4core3ptr19copy_nonoverlappinghECsdBofyk9Yr2t_5alloc - 43 samples (0.5%)</title>
+<rect x="214.82" y="518.0" width="7.95" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>compiler_rt.memcpy.copySmallLength - 19 samples (0.2%)</title>
+<rect x="214.82" y="488.0" width="3.51" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RNvMs2_NtCsdBofyk9Yr2t_5alloc7raw_vecNtB5_11RawVecInner8capacityB7_ - 41 samples (0.5%)</title>
+<rect x="222.77" y="518.0" width="7.58" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RINvNtCsitGFVNq7Ifu_4core3ptr4readhEB4_ - 17 samples (0.2%)</title>
+<rect x="241.45" y="548.0" width="3.14" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RNvNtCsdBofyk9Yr2t_5alloc5alloc5alloc - 190 samples (2.4%)</title>
+<rect x="250.33" y="578.0" width="35.14" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-master-13"><rect x="253.33" y="578.0" width="29.14" height="27"/></clipPath>
+<text x="255.3" y="596.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-master-13)">_RNvNtCsdBofyk9Yr2t_5alloc5alloc5alloc</text>
+</g>
+<g><title>&lt;deduplicated_symbol&gt; - 64 samples (0.8%)</title>
+<rect x="250.33" y="548.0" width="11.84" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_xzm_xzone_malloc - 51 samples (0.6%)</title>
+<rect x="262.16" y="548.0" width="9.43" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_malloc_zone_malloc - 40 samples (0.5%)</title>
+<rect x="271.60" y="548.0" width="7.40" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RNvCs4SDFJOLwvtW_7___rustc11___rdl_alloc - 20 samples (0.3%)</title>
+<rect x="278.99" y="548.0" width="3.70" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RNvNtCsitGFVNq7Ifu_4core3fmt5write - 36 samples (0.5%)</title>
+<rect x="285.47" y="578.0" width="6.66" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RINvNtCsitGFVNq7Ifu_4core3ptr4readhECsdBofyk9Yr2t_5alloc - 35 samples (0.4%)</title>
+<rect x="292.13" y="578.0" width="6.47" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RNvMs3_NtCsitGFVNq7Ifu_4core3fmtNtB5_9Arguments18estimated_capacity - 24 samples (0.3%)</title>
+<rect x="298.60" y="578.0" width="4.44" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RNvNvNtCsdBofyk9Yr2t_5alloc3fmt6format12format_inner - 23 samples (0.3%)</title>
+<rect x="303.04" y="578.0" width="4.25" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RNvMs1_NtNtCsitGFVNq7Ifu_4core3ptr8non_nullINtB5_7NonNullhE3addCsdBofyk9Yr2t_5alloc - 18 samples (0.2%)</title>
+<rect x="307.29" y="578.0" width="3.33" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>alloc::vec::Vec$LT$T$C$A$GT$::push_mut - 160 samples (2.0%)</title>
+<rect x="310.81" y="608.0" width="29.59" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>alloc::raw_vec::RawVecInner$LT$A$GT$::grow_amortized - 127 samples (1.6%)</title>
+<rect x="310.81" y="578.0" width="23.49" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RNvNtCsdBofyk9Yr2t_5alloc5alloc5alloc - 102 samples (1.3%)</title>
+<rect x="310.81" y="548.0" width="18.86" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_xzm_xzone_malloc - 31 samples (0.4%)</title>
+<rect x="310.81" y="518.0" width="5.73" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_malloc_zone_malloc - 29 samples (0.4%)</title>
+<rect x="316.54" y="518.0" width="5.36" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>&lt;deduplicated_symbol&gt; - 28 samples (0.4%)</title>
+<rect x="321.90" y="518.0" width="5.18" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>herdr::protocol::render_ansi::color_to_sgr_fg - 110 samples (1.4%)</title>
+<rect x="340.40" y="608.0" width="20.34" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RNvNtCsdBofyk9Yr2t_5alloc5alloc5alloc - 106 samples (1.3%)</title>
+<rect x="360.74" y="608.0" width="19.60" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>&lt;deduplicated_symbol&gt; - 31 samples (0.4%)</title>
+<rect x="360.74" y="578.0" width="5.73" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_xzm_xzone_malloc - 28 samples (0.4%)</title>
+<rect x="366.48" y="578.0" width="5.18" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_malloc_zone_malloc - 20 samples (0.3%)</title>
+<rect x="371.65" y="578.0" width="3.70" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RNvCs4SDFJOLwvtW_7___rustc11___rdl_alloc - 17 samples (0.2%)</title>
+<rect x="375.35" y="578.0" width="3.14" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>alloc::raw_vec::RawVecInner$LT$A$GT$::try_allocate_in - 70 samples (0.9%)</title>
+<rect x="380.35" y="608.0" width="12.95" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>herdr::protocol::render_ansi::modifier_to_sgr_parts - 66 samples (0.8%)</title>
+<rect x="393.29" y="608.0" width="12.21" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>alloc::raw_vec::RawVecInner$LT$A$GT$::capacity - 24 samples (0.3%)</title>
+<rect x="405.50" y="608.0" width="4.44" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>herdr::protocol::render_ansi::color_to_sgr_bg - 21 samples (0.3%)</title>
+<rect x="409.94" y="608.0" width="3.88" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>alloc::fmt::format::_$u7b$$u7b$closure$u7d$$u7d$ - 1,764 samples (22.3%)</title>
+<rect x="421.59" y="638.0" width="326.25" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-master-14"><rect x="424.59" y="638.0" width="320.25" height="27"/></clipPath>
+<text x="426.6" y="656.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-master-14)">alloc::fmt::format::{closure}</text>
+</g>
+<g><title>_RNvXs_NvNtNtCsitGFVNq7Ifu_4core3fmt5Write9write_fmtQNtNtCsdBofyk9Yr2t_5alloc6string6StringNtB4_12SpecWriteFmt14spec_write_fmtBS_ - 1,528 samples (19.4%)</title>
+<rect x="421.59" y="608.0" width="282.60" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-master-15"><rect x="424.59" y="608.0" width="276.60" height="27"/></clipPath>
+<text x="426.6" y="626.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-master-15)">_RNvXs_NvNtNtCsitGFVNq7Ifu_4core3fmt5Write9write_fmtQNtNtCsdBofyk9Yr2t_5alloc6string6StringNtB4_12SpecWriteFmt14spec_write_fmtBS_</text>
+</g>
+<g><title>_RNvNtCsitGFVNq7Ifu_4core3fmt5write - 758 samples (9.6%)</title>
+<rect x="421.59" y="578.0" width="140.19" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-master-16"><rect x="424.59" y="578.0" width="134.19" height="27"/></clipPath>
+<text x="426.6" y="596.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-master-16)">_RNvNtCsitGFVNq7Ifu_4core3fmt5write</text>
+</g>
+<g><title>_RNvMs2_NtCsdBofyk9Yr2t_5alloc7raw_vecNtB5_11RawVecInner7reserveB7_ - 669 samples (8.5%)</title>
+<rect x="421.59" y="548.0" width="123.73" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-master-17"><rect x="424.59" y="548.0" width="117.73" height="27"/></clipPath>
+<text x="426.6" y="566.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-master-17)">_RNvMs2_NtCsdBofyk9Yr2t_5alloc7raw_vecNtB5_11RawVecInner7reserveB7_</text>
+</g>
+<g><title>_RNvMs4_NtCsdBofyk9Yr2t_5alloc7raw_vecNtB5_11RawVecInner14grow_amortizedB7_ - 647 samples (8.2%)</title>
+<rect x="421.59" y="518.0" width="119.66" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-master-18"><rect x="424.59" y="518.0" width="113.66" height="27"/></clipPath>
+<text x="426.6" y="536.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-master-18)">_RNvMs4_NtCsdBofyk9Yr2t_5alloc7raw_vecNtB5_11RawVecInner14grow_amortizedB7_</text>
+</g>
+<g><title>_RNvNtCsdBofyk9Yr2t_5alloc5alloc15realloc_nonnull - 623 samples (7.9%)</title>
+<rect x="421.59" y="488.0" width="115.22" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-master-19"><rect x="424.59" y="488.0" width="109.22" height="27"/></clipPath>
+<text x="426.6" y="506.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-master-19)">_RNvNtCsdBofyk9Yr2t_5alloc5alloc15realloc_nonnull</text>
+</g>
+<g><title>_realloc - 594 samples (7.5%)</title>
+<rect x="421.59" y="458.0" width="109.86" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-master-20"><rect x="424.59" y="458.0" width="103.86" height="27"/></clipPath>
+<text x="426.6" y="476.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-master-20)">_realloc</text>
+</g>
+<g><title>_malloc_zone_realloc - 494 samples (6.3%)</title>
+<rect x="421.59" y="428.0" width="91.37" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-master-21"><rect x="424.59" y="428.0" width="85.37" height="27"/></clipPath>
+<text x="426.6" y="446.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-master-21)">_malloc_zone_realloc</text>
+</g>
+<g><title>xzm_realloc - 407 samples (5.2%)</title>
+<rect x="421.59" y="398.0" width="75.27" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-master-22"><rect x="424.59" y="398.0" width="69.27" height="27"/></clipPath>
+<text x="426.6" y="416.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-master-22)">xzm_realloc</text>
+</g>
+<g><title>_platform_memmove - 125 samples (1.6%)</title>
+<rect x="421.59" y="368.0" width="23.12" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_xzm_free - 124 samples (1.6%)</title>
+<rect x="444.71" y="368.0" width="22.93" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_platform_memset - 41 samples (0.5%)</title>
+<rect x="444.71" y="338.0" width="7.58" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_xzm_xzone_malloc - 29 samples (0.4%)</title>
+<rect x="467.64" y="368.0" width="5.36" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>&lt;deduplicated_symbol&gt; - 22 samples (0.3%)</title>
+<rect x="473.01" y="368.0" width="4.07" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>xzm_malloc_zone_size - 65 samples (0.8%)</title>
+<rect x="512.96" y="428.0" width="12.02" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RINvNtCsitGFVNq7Ifu_4core3ptr19copy_nonoverlappinghECsdBofyk9Yr2t_5alloc - 32 samples (0.4%)</title>
+<rect x="545.32" y="548.0" width="5.92" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RNvMNtNtCsitGFVNq7Ifu_4core3fmt2rtNtB2_8Argument3fmt - 690 samples (8.7%)</title>
+<rect x="561.78" y="578.0" width="127.62" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-master-23"><rect x="564.78" y="578.0" width="121.62" height="27"/></clipPath>
+<text x="566.8" y="596.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-master-23)">_RNvMNtNtCsitGFVNq7Ifu_4core3fmt2rtNtB2_8Argument3fmt</text>
+</g>
+<g><title>_RNvMs2_NtCsdBofyk9Yr2t_5alloc7raw_vecNtB5_11RawVecInner7reserveB7_ - 602 samples (7.6%)</title>
+<rect x="561.78" y="548.0" width="111.34" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-master-24"><rect x="564.78" y="548.0" width="105.34" height="27"/></clipPath>
+<text x="566.8" y="566.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-master-24)">_RNvMs2_NtCsdBofyk9Yr2t_5alloc7raw_vecNtB5_11RawVecInner7reserveB7_</text>
+</g>
+<g><title>_RNvMs4_NtCsdBofyk9Yr2t_5alloc7raw_vecNtB5_11RawVecInner14grow_amortizedB7_ - 582 samples (7.4%)</title>
+<rect x="561.78" y="518.0" width="107.64" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-master-25"><rect x="564.78" y="518.0" width="101.64" height="27"/></clipPath>
+<text x="566.8" y="536.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-master-25)">_RNvMs4_NtCsdBofyk9Yr2t_5alloc7raw_vecNtB5_11RawVecInner14grow_amortizedB7_</text>
+</g>
+<g><title>_RNvNtCsdBofyk9Yr2t_5alloc5alloc15realloc_nonnull - 553 samples (7.0%)</title>
+<rect x="561.78" y="488.0" width="102.28" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-master-26"><rect x="564.78" y="488.0" width="96.28" height="27"/></clipPath>
+<text x="566.8" y="506.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-master-26)">_RNvNtCsdBofyk9Yr2t_5alloc5alloc15realloc_nonnull</text>
+</g>
+<g><title>_realloc - 506 samples (6.4%)</title>
+<rect x="561.78" y="458.0" width="93.59" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-master-27"><rect x="564.78" y="458.0" width="87.59" height="27"/></clipPath>
+<text x="566.8" y="476.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-master-27)">_realloc</text>
+</g>
+<g><title>_malloc_zone_realloc - 344 samples (4.4%)</title>
+<rect x="561.78" y="428.0" width="63.62" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-master-28"><rect x="564.78" y="428.0" width="57.62" height="27"/></clipPath>
+<text x="566.8" y="446.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-master-28)">_malloc_zone_realloc</text>
+</g>
+<g><title>xzm_realloc - 255 samples (3.2%)</title>
+<rect x="561.78" y="398.0" width="47.16" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-master-29"><rect x="564.78" y="398.0" width="41.16" height="27"/></clipPath>
+<text x="566.8" y="416.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-master-29)">xzm_realloc</text>
+</g>
+<g><title>_xzm_free - 59 samples (0.7%)</title>
+<rect x="561.78" y="368.0" width="10.91" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>&lt;deduplicated_symbol&gt; - 25 samples (0.3%)</title>
+<rect x="572.70" y="368.0" width="4.62" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_xzm_xzone_malloc - 25 samples (0.3%)</title>
+<rect x="577.32" y="368.0" width="4.62" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_platform_memmove - 22 samples (0.3%)</title>
+<rect x="581.94" y="368.0" width="4.07" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>xzm_malloc_zone_size - 95 samples (1.2%)</title>
+<rect x="625.41" y="428.0" width="17.57" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RNvMs4_NtCsdBofyk9Yr2t_5alloc7raw_vecNtB5_11RawVecInner11finish_growB7_ - 19 samples (0.2%)</title>
+<rect x="664.06" y="488.0" width="3.51" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RINvNtCsitGFVNq7Ifu_4core3ptr19copy_nonoverlappinghECsdBofyk9Yr2t_5alloc - 41 samples (0.5%)</title>
+<rect x="673.12" y="548.0" width="7.58" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RNvMsa_NtCsitGFVNq7Ifu_4core3fmtNtB5_9Formatter3pad - 25 samples (0.3%)</title>
+<rect x="680.71" y="548.0" width="4.62" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RNvXsZ_NtCsdBofyk9Yr2t_5alloc6stringNtB5_6StringNtNtCsitGFVNq7Ifu_4core3fmt5Write9write_str - 26 samples (0.3%)</title>
+<rect x="689.40" y="578.0" width="4.81" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RNvMsa_NtCsitGFVNq7Ifu_4core3fmtNtB5_9Formatter3pad - 18 samples (0.2%)</title>
+<rect x="694.21" y="578.0" width="3.33" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RNvNtCsdBofyk9Yr2t_5alloc5alloc5alloc - 141 samples (1.8%)</title>
+<rect x="704.20" y="608.0" width="26.08" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>&lt;deduplicated_symbol&gt; - 45 samples (0.6%)</title>
+<rect x="704.20" y="578.0" width="8.32" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_malloc_zone_malloc - 42 samples (0.5%)</title>
+<rect x="712.52" y="578.0" width="7.77" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_xzm_xzone_malloc - 33 samples (0.4%)</title>
+<rect x="720.29" y="578.0" width="6.10" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RNvNvNtCsdBofyk9Yr2t_5alloc3fmt6format12format_inner - 34 samples (0.4%)</title>
+<rect x="730.27" y="608.0" width="6.29" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RINvNtCsitGFVNq7Ifu_4core3ptr4readhECsdBofyk9Yr2t_5alloc - 23 samples (0.3%)</title>
+<rect x="736.56" y="608.0" width="4.25" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RNvNtCsitGFVNq7Ifu_4core3fmt5write - 21 samples (0.3%)</title>
+<rect x="740.82" y="608.0" width="3.88" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RNvNtCsdBofyk9Yr2t_5alloc5alloc15dealloc_nonnull - 1,076 samples (13.6%)</title>
+<rect x="747.84" y="638.0" width="199.01" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-master-30"><rect x="750.84" y="638.0" width="193.01" height="27"/></clipPath>
+<text x="752.8" y="656.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-master-30)">_RNvNtCsdBofyk9Yr2t_5alloc5alloc15dealloc_nonnull</text>
+</g>
+<g><title>_xzm_free - 794 samples (10.1%)</title>
+<rect x="747.84" y="608.0" width="146.85" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-master-31"><rect x="750.84" y="608.0" width="140.85" height="27"/></clipPath>
+<text x="752.8" y="626.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-master-31)">_xzm_free</text>
+</g>
+<g><title>_platform_memset - 81 samples (1.0%)</title>
+<rect x="747.84" y="578.0" width="14.98" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>DYLD-STUB$$_platform_bzero - 27 samples (0.3%)</title>
+<rect x="762.82" y="578.0" width="4.99" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_free - 183 samples (2.3%)</title>
+<rect x="894.69" y="608.0" width="33.85" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>DYLD-STUB$$free - 97 samples (1.2%)</title>
+<rect x="928.54" y="608.0" width="17.94" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>alloc::raw_vec::RawVecInner$LT$A$GT$::reserve - 630 samples (8.0%)</title>
+<rect x="946.85" y="638.0" width="116.52" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-master-32"><rect x="949.85" y="638.0" width="110.52" height="27"/></clipPath>
+<text x="951.9" y="656.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-master-32)">alloc::raw_vec::RawVecInner$LT$A$GT$::reserve</text>
+</g>
+<g><title>alloc::raw_vec::RawVecInner$LT$A$GT$::grow_amortized - 600 samples (7.6%)</title>
+<rect x="946.85" y="608.0" width="110.97" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-master-33"><rect x="949.85" y="608.0" width="104.97" height="27"/></clipPath>
+<text x="951.9" y="626.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-master-33)">alloc::raw_vec::RawVecInner$LT$A$GT$::grow_amortized</text>
+</g>
+<g><title>_RNvNtCsdBofyk9Yr2t_5alloc5alloc15realloc_nonnull - 575 samples (7.3%)</title>
+<rect x="946.85" y="578.0" width="106.35" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-master-34"><rect x="949.85" y="578.0" width="100.35" height="27"/></clipPath>
+<text x="951.9" y="596.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-master-34)">_RNvNtCsdBofyk9Yr2t_5alloc5alloc15realloc_nonnull</text>
+</g>
+<g><title>_realloc - 542 samples (6.9%)</title>
+<rect x="946.85" y="548.0" width="100.24" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-master-35"><rect x="949.85" y="548.0" width="94.24" height="27"/></clipPath>
+<text x="951.9" y="566.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-master-35)">_realloc</text>
+</g>
+<g><title>_malloc_zone_realloc - 397 samples (5.0%)</title>
+<rect x="946.85" y="518.0" width="73.43" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-master-36"><rect x="949.85" y="518.0" width="67.43" height="27"/></clipPath>
+<text x="951.9" y="536.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-master-36)">_malloc_zone_realloc</text>
+</g>
+<g><title>xzm_realloc - 321 samples (4.1%)</title>
+<rect x="946.85" y="488.0" width="59.37" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-master-37"><rect x="949.85" y="488.0" width="53.37" height="27"/></clipPath>
+<text x="951.9" y="506.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-master-37)">xzm_realloc</text>
+</g>
+<g><title>_xzm_free - 109 samples (1.4%)</title>
+<rect x="946.85" y="458.0" width="20.16" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_platform_memset - 27 samples (0.3%)</title>
+<rect x="946.85" y="428.0" width="4.99" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_xzm_xzone_malloc - 38 samples (0.5%)</title>
+<rect x="967.01" y="458.0" width="7.03" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_platform_memmove - 35 samples (0.4%)</title>
+<rect x="974.04" y="458.0" width="6.47" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>&lt;deduplicated_symbol&gt; - 34 samples (0.4%)</title>
+<rect x="980.51" y="458.0" width="6.29" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>default_zone_realloc - 19 samples (0.2%)</title>
+<rect x="1006.22" y="488.0" width="3.51" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>xzm_malloc_zone_size - 102 samples (1.3%)</title>
+<rect x="1020.28" y="518.0" width="18.86" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>alloc::vec::Vec$LT$T$C$A$GT$::push_mut - 502 samples (6.4%)</title>
+<rect x="1063.37" y="638.0" width="92.85" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-master-38"><rect x="1066.37" y="638.0" width="86.85" height="27"/></clipPath>
+<text x="1068.4" y="656.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-master-38)">alloc::vec::Vec$LT$T$C$A$GT$::push_mut</text>
+</g>
+<g><title>_RNvMs4_NtCsdBofyk9Yr2t_5alloc7raw_vecNtB5_11RawVecInner14grow_amortizedCscEX5ZwinSox_3std - 456 samples (5.8%)</title>
+<rect x="1063.37" y="608.0" width="84.34" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-master-39"><rect x="1066.37" y="608.0" width="78.34" height="27"/></clipPath>
+<text x="1068.4" y="626.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-master-39)">_RNvMs4_NtCsdBofyk9Yr2t_5alloc7raw_vecNtB5_11RawVecInner14grow_amortizedCscEX5ZwinSox_3std</text>
+</g>
+<g><title>_RNvNtCsdBofyk9Yr2t_5alloc5alloc15realloc_nonnull - 421 samples (5.3%)</title>
+<rect x="1063.37" y="578.0" width="77.86" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-master-40"><rect x="1066.37" y="578.0" width="71.86" height="27"/></clipPath>
+<text x="1068.4" y="596.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-master-40)">_RNvNtCsdBofyk9Yr2t_5alloc5alloc15realloc_nonnull</text>
+</g>
+<g><title>_realloc - 403 samples (5.1%)</title>
+<rect x="1063.37" y="548.0" width="74.54" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-master-41"><rect x="1066.37" y="548.0" width="68.54" height="27"/></clipPath>
+<text x="1068.4" y="566.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-master-41)">_realloc</text>
+</g>
+<g><title>_malloc_zone_realloc - 313 samples (4.0%)</title>
+<rect x="1063.37" y="518.0" width="57.89" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-master-42"><rect x="1066.37" y="518.0" width="51.89" height="27"/></clipPath>
+<text x="1068.4" y="536.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-master-42)">_malloc_zone_realloc</text>
+</g>
+<g><title>xzm_realloc - 261 samples (3.3%)</title>
+<rect x="1063.37" y="488.0" width="48.27" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-master-43"><rect x="1066.37" y="488.0" width="42.27" height="27"/></clipPath>
+<text x="1068.4" y="506.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-master-43)">xzm_realloc</text>
+</g>
+<g><title>_xzm_free - 99 samples (1.3%)</title>
+<rect x="1063.37" y="458.0" width="18.31" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>&lt;deduplicated_symbol&gt; - 28 samples (0.4%)</title>
+<rect x="1081.68" y="458.0" width="5.18" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_platform_memmove - 28 samples (0.4%)</title>
+<rect x="1086.86" y="458.0" width="5.18" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_xzm_xzone_malloc - 28 samples (0.4%)</title>
+<rect x="1092.04" y="458.0" width="5.18" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>xzm_malloc_zone_size - 58 samples (0.7%)</title>
+<rect x="1121.26" y="518.0" width="10.73" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_$LT$core..iter..adapters..map..Map$LT$I$C$F$GT$$u20$as$u20$core..iter..traits..iterator..Iterator$GT$::fold - 429 samples (5.4%)</title>
+<rect x="1156.21" y="638.0" width="79.34" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-master-44"><rect x="1159.21" y="638.0" width="73.34" height="27"/></clipPath>
+<text x="1161.2" y="656.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-master-44)">_$LT$core..iter..adapters..map..Map$LT$I$C$F$GT$$u20$as$u20$core..iter..traits..iterator..Iterator$GT$::fold</text>
+</g>
+<g><title>_RNvNtCsdBofyk9Yr2t_5alloc5alloc5alloc - 196 samples (2.5%)</title>
+<rect x="1156.21" y="608.0" width="36.25" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-master-45"><rect x="1159.21" y="608.0" width="30.25" height="27"/></clipPath>
+<text x="1161.2" y="626.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-master-45)">_RNvNtCsdBofyk9Yr2t_5alloc5alloc5alloc</text>
+</g>
+<g><title>_malloc_zone_malloc - 59 samples (0.7%)</title>
+<rect x="1156.21" y="578.0" width="10.91" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>&lt;deduplicated_symbol&gt; - 56 samples (0.7%)</title>
+<rect x="1167.13" y="578.0" width="10.36" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_xzm_xzone_malloc - 54 samples (0.7%)</title>
+<rect x="1177.48" y="578.0" width="9.99" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RNvNtCsdBofyk9Yr2t_5alloc5alloc15dealloc_nonnull - 126 samples (1.6%)</title>
+<rect x="1192.47" y="608.0" width="23.30" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_xzm_free - 84 samples (1.1%)</title>
+<rect x="1192.47" y="578.0" width="15.54" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_free - 23 samples (0.3%)</title>
+<rect x="1208.00" y="578.0" width="4.25" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>DYLD-STUB$$free - 19 samples (0.2%)</title>
+<rect x="1212.25" y="578.0" width="3.51" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>alloc::raw_vec::RawVecInner$LT$A$GT$::try_allocate_in - 37 samples (0.5%)</title>
+<rect x="1215.77" y="608.0" width="6.84" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_$LT$alloc..vec..into_iter..IntoIter$LT$T$C$A$GT$$u20$as$u20$core..iter..traits..iterator..Iterator$GT$::fold - 21 samples (0.3%)</title>
+<rect x="1222.61" y="608.0" width="3.88" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>core::ptr::copy_nonoverlapping - 20 samples (0.3%)</title>
+<rect x="1226.50" y="608.0" width="3.70" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>alloc::str::_$LT$impl$u20$alloc..slice..Join$LT$$RF$str$GT$$u20$for$u20$$u5b$S$u5d$$GT$::join - 384 samples (4.9%)</title>
+<rect x="1235.56" y="638.0" width="71.02" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-master-46"><rect x="1238.56" y="638.0" width="65.02" height="27"/></clipPath>
+<text x="1240.6" y="656.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-master-46)">alloc::str::_$LT$impl$u20$alloc..slice..Join$LT$$RF$str$GT$$u20$for$u20$$u5b$S$u5d$$GT$::join</text>
+</g>
+<g><title>_RNvNtCsdBofyk9Yr2t_5alloc5alloc5alloc - 139 samples (1.8%)</title>
+<rect x="1235.56" y="608.0" width="25.71" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_xzm_xzone_malloc - 45 samples (0.6%)</title>
+<rect x="1235.56" y="578.0" width="8.32" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>&lt;deduplicated_symbol&gt; - 37 samples (0.5%)</title>
+<rect x="1243.88" y="578.0" width="6.84" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_malloc_zone_malloc - 37 samples (0.5%)</title>
+<rect x="1250.72" y="578.0" width="6.84" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>core::ptr::copy_nonoverlapping - 102 samples (1.3%)</title>
+<rect x="1261.27" y="608.0" width="18.86" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>compiler_rt.memcpy.copyLessThan16 - 31 samples (0.4%)</title>
+<rect x="1261.27" y="578.0" width="5.73" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>compiler_rt.memcpy.copyFixedLength - 19 samples (0.2%)</title>
+<rect x="1267.00" y="578.0" width="3.51" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>compiler_rt.memcpy.copySmallLength - 19 samples (0.2%)</title>
+<rect x="1270.51" y="578.0" width="3.51" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>alloc::str::join_generic_copy - 34 samples (0.4%)</title>
+<rect x="1280.13" y="608.0" width="6.29" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_$LT$core..slice..iter..Iter$LT$T$GT$$u20$as$u20$core..iter..traits..iterator..Iterator$GT$::next - 27 samples (0.3%)</title>
+<rect x="1286.42" y="608.0" width="4.99" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>core::slice::_$LT$impl$u20$$u5b$T$u5d$$GT$::split_at_mut_checked - 19 samples (0.2%)</title>
+<rect x="1291.41" y="608.0" width="3.51" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RNvNtCsdBofyk9Yr2t_5alloc5alloc5alloc - 272 samples (3.4%)</title>
+<rect x="1306.58" y="638.0" width="50.31" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+<clipPath id="clip-master-47"><rect x="1309.58" y="638.0" width="44.31" height="27"/></clipPath>
+<text x="1311.6" y="656.0" class="tiny mono" style="fill:#FFFFFF" clip-path="url(#clip-master-47)">_RNvNtCsdBofyk9Yr2t_5alloc5alloc5alloc</text>
+</g>
+<g><title>&lt;deduplicated_symbol&gt; - 90 samples (1.1%)</title>
+<rect x="1306.58" y="608.0" width="16.65" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_malloc_zone_malloc - 62 samples (0.8%)</title>
+<rect x="1323.23" y="608.0" width="11.47" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_xzm_xzone_malloc - 54 samples (0.7%)</title>
+<rect x="1334.69" y="608.0" width="9.99" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RNvCs4SDFJOLwvtW_7___rustc11___rdl_alloc - 40 samples (0.5%)</title>
+<rect x="1344.68" y="608.0" width="7.40" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_xzm_free - 82 samples (1.0%)</title>
+<rect x="1356.89" y="638.0" width="15.17" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_$LT$alloc..raw_vec..RawVec$LT$T$C$A$GT$$u20$as$u20$core..ops..drop..Drop$GT$::drop - 61 samples (0.8%)</title>
+<rect x="1372.05" y="638.0" width="11.28" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>alloc::raw_vec::RawVecInner$LT$A$GT$::non_null - 33 samples (0.4%)</title>
+<rect x="1383.33" y="638.0" width="6.10" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>herdr::protocol::render_ansi::modifier_to_sgr_parts - 18 samples (0.2%)</title>
+<rect x="1389.44" y="638.0" width="3.33" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RNvNtCsdBofyk9Yr2t_5alloc5alloc15dealloc_nonnull - 181 samples (2.3%)</title>
+<rect x="1414.59" y="668.0" width="33.48" height="27" fill="#868E96" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_xzm_free - 140 samples (1.8%)</title>
+<rect x="1414.59" y="638.0" width="25.89" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_platform_memset - 26 samples (0.3%)</title>
+<rect x="1414.59" y="608.0" width="4.81" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_free - 27 samples (0.3%)</title>
+<rect x="1440.48" y="638.0" width="4.99" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>unicode_width::tables::str_width - 167 samples (2.1%)</title>
+<rect x="1448.07" y="668.0" width="30.89" height="27" fill="#868E96" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>core::iter::traits::double_ended::DoubleEndedIterator::rfold - 70 samples (0.9%)</title>
+<rect x="1448.07" y="638.0" width="12.95" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>core::str::validations::next_code_point_reverse - 44 samples (0.6%)</title>
+<rect x="1461.01" y="638.0" width="8.14" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>unicode_width::tables::width_in_str - 27 samples (0.3%)</title>
+<rect x="1469.15" y="638.0" width="4.99" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RNvMs9_NtCsitGFVNq7Ifu_4core3numj12wrapping_add - 26 samples (0.3%)</title>
+<rect x="1474.14" y="638.0" width="4.81" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>core::iter::traits::double_ended::DoubleEndedIterator::rfold - 49 samples (0.6%)</title>
+<rect x="1478.95" y="668.0" width="9.06" height="27" fill="#868E96" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>core::ptr::copy_nonoverlapping - 36 samples (0.5%)</title>
+<rect x="1488.02" y="668.0" width="6.66" height="27" fill="#868E96" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>compiler_rt.memcpy.copySmallLength - 20 samples (0.3%)</title>
+<rect x="1488.02" y="638.0" width="3.70" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>herdr::protocol::render_ansi::write_changed_cells - 36 samples (0.5%)</title>
+<rect x="1494.67" y="668.0" width="6.66" height="27" fill="#868E96" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_$LT$A$u20$as$u20$core..slice..cmp..SlicePartialEq$LT$B$GT$$GT$::equal_same_length - 25 samples (0.3%)</title>
+<rect x="1501.33" y="668.0" width="4.62" height="27" fill="#868E96" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>memcmp - 18 samples (0.2%)</title>
+<rect x="1501.33" y="638.0" width="3.33" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>alloc::raw_vec::RawVecInner$LT$A$GT$::reserve - 23 samples (0.3%)</title>
+<rect x="1505.96" y="668.0" width="4.25" height="27" fill="#868E96" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>alloc::raw_vec::RawVecInner$LT$A$GT$::grow_amortized - 22 samples (0.3%)</title>
+<rect x="1505.96" y="638.0" width="4.07" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_RNvNtCsdBofyk9Yr2t_5alloc5alloc15realloc_nonnull - 22 samples (0.3%)</title>
+<rect x="1505.96" y="608.0" width="4.07" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_realloc - 22 samples (0.3%)</title>
+<rect x="1505.96" y="578.0" width="4.07" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_malloc_zone_realloc - 22 samples (0.3%)</title>
+<rect x="1505.96" y="548.0" width="4.07" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>xzm_realloc - 22 samples (0.3%)</title>
+<rect x="1505.96" y="518.0" width="4.07" height="27" fill="#6C757D" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<g><title>_xzm_free - 19 samples (0.2%)</title>
+<rect x="1510.21" y="668.0" width="3.51" height="27" fill="#868E96" stroke="#FFFFFF" stroke-width="1"/>
+</g>
+<text x="70.0" y="792.0" class="small">Source: sanitized collapsed native stacks (root-to-leaf). Outer Rust test-harness frames are cropped; no stack frames are inferred or fabricated.</text>
+<line x1="70.0" y1="805.0" x2="1530.0" y2="805.0" stroke="#D8DDE2" stroke-width="1"/>
+<text x="70.0" y="828.0" class="tiny mono">master 06ca0baa12f4203c5bbad9ecadf53f9a475a52b2  |  candidate d00dc4813d6803ce4efa3e9ad7b1c3533512aaff</text>
+<text x="1530.0" y="828.0" class="tiny" text-anchor="end">Xcode 26.6 Time Profiler | 8s each | 200×50 dense fixture | oracle 276444 B / edfa0379543ed13d</text>
+</svg>
