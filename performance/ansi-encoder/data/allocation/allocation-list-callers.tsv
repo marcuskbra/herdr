@@ -1,0 +1,5 @@
+revision	caller_family	listed_live_allocations	listed_live_bytes	listed_rows_scope	completeness
+master	call-stack-limit-reached	1072	117616	end-of-recording-live-list	incomplete-versus-statistics
+master	rust-thread-parker-drop	2	96	end-of-recording-live-list	incomplete-versus-statistics
+candidate	call-stack-limit-reached	1072	117680	end-of-recording-live-list	incomplete-versus-statistics
+candidate	rust-thread-parker-drop	2	96	end-of-recording-live-list	incomplete-versus-statistics

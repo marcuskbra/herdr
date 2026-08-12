@@ -1,0 +1,3 @@
+revision	cells	measured_frames	counting_allocator_operations_per_frame	counting_allocator_requested_bytes_per_frame	definition
+master	10000	10	124651	5386440	test-counting allocator requests delegated to System; context only, not xctrace equality
+candidate	10000	10	17	1048568	test-counting allocator requests delegated to System; context only, not xctrace equality

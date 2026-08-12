@@ -1,0 +1,11 @@
+trace	surface	name	exportable	scope
+signed-master	track	Allocations	metadata-only	run-1
+signed-master	track-detail	Statistics	yes	Allocations
+signed-master	track-detail	Allocations List	yes	Allocations
+signed-master	track	VM Tracker	metadata-only	run-1
+signed-master	track-detail	Regions Map	not-tested	VM Tracker
+signed-candidate	track	Allocations	metadata-only	run-1
+signed-candidate	track-detail	Statistics	yes	Allocations
+signed-candidate	track-detail	Allocations List	yes	Allocations
+signed-candidate	track	VM Tracker	metadata-only	run-1
+signed-candidate	track-detail	Regions Map	not-tested	VM Tracker

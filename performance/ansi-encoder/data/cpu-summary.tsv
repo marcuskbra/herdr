@@ -1,0 +1,61 @@
+revision	kind	metric	label	count	share_of_all_samples	status
+master	identity	samples	all exported CPU samples	7894	1.000000	observed
+master	identity	resolved_stacks	resolved native backtraces	7894	1.000000	observed
+master	identity	herdr_leaf_samples	innermost target Herdr frame	7894	1.000000	observed
+master	identity	sample_span_seconds	first-to-last active CPU sample		7.895996542	observed
+master	leaf	herdr::protocol::render_ansi::write_cell	herdr::protocol::render_ansi::write_cell	5325	0.674563	observed
+master	leaf	herdr::protocol::render_ansi::build_sgr	herdr::protocol::render_ansi::build_sgr	1694	0.214593	observed
+master	leaf	herdr::protocol::render_ansi::BlitEncoder::encode_inner	herdr::protocol::render_ansi::BlitEncoder::encode_inner	573	0.072587	observed
+master	leaf	herdr::protocol::render_ansi::color_to_sgr_fg	herdr::protocol::render_ansi::color_to_sgr_fg	118	0.014948	observed
+master	leaf	herdr::protocol::render_ansi::modifier_to_sgr_parts	herdr::protocol::render_ansi::modifier_to_sgr_parts	84	0.010641	observed
+master	leaf	herdr::protocol::render_ansi::write_changed_cells	herdr::protocol::render_ansi::write_changed_cells	36	0.004560	observed
+master	leaf	herdr::protocol::wire::underline_style_from_modifier	herdr::protocol::wire::underline_style_from_modifier	16	0.002027	observed
+master	leaf	herdr::protocol::render_ansi::write_hyperlink_if_changed	herdr::protocol::render_ansi::write_hyperlink_if_changed	14	0.001773	observed
+master	leaf	herdr::protocol::render_ansi::SgrColour::from_packed	herdr::protocol::render_ansi::SgrColour::from_packed	0	0.000000	absent
+master	leaf	herdr::protocol::render_ansi::SgrStyleKey::from_cell	herdr::protocol::render_ansi::SgrStyleKey::from_cell	0	0.000000	absent
+master	leaf	herdr::protocol::render_ansi::write_sgr	herdr::protocol::render_ansi::write_sgr	0	0.000000	absent
+master	leaf	herdr::protocol::render_ansi::write_sgr_colour	herdr::protocol::render_ansi::write_sgr_colour	0	0.000000	absent
+master	leaf	herdr::protocol::render_ansi::write_sgr_modifiers	herdr::protocol::render_ansi::write_sgr_modifiers	0	0.000000	absent
+master	leaf	herdr::protocol::render_ansi::write_u8_decimal	herdr::protocol::render_ansi::write_u8_decimal	0	0.000000	absent
+master	leaf	Other	Other (<0.5% target leaves + non-target/unresolved)	34	0.004307	grouped
+master	stack_family	encode_inner	BlitEncoder::encode_inner	7892	0.999747	observed
+master	stack_family	write_cell	write_cell	7270	0.920953	observed
+master	stack_family	alloc_format	alloc::fmt::format	3066	0.388396	observed
+master	stack_family	malloc_family	malloc-containing stack	2808	0.355713	observed
+master	stack_family	realloc_family	realloc-containing stack	2476	0.313656	observed
+master	stack_family	build_sgr	legacy build_sgr	1907	0.241576	observed
+master	stack_family	write_sgr	direct write_sgr family	0	0.000000	absent
+master	stack_family	write_sgr_colour	write_sgr_colour	0	0.000000	absent
+master	stack_family	write_u8_decimal	write_u8_decimal	0	0.000000	absent
+master	stack_family	style_key	SgrStyleKey::from_cell	0	0.000000	absent
+master	stack_family	write_changed_cells	write_changed_cells	36	0.004560	observed
+candidate	identity	samples	all exported CPU samples	7707	1.000000	observed
+candidate	identity	resolved_stacks	resolved native backtraces	7707	1.000000	observed
+candidate	identity	herdr_leaf_samples	innermost target Herdr frame	7707	1.000000	observed
+candidate	identity	sample_span_seconds	first-to-last active CPU sample		8.091001458	observed
+candidate	leaf	herdr::protocol::render_ansi::write_sgr	herdr::protocol::render_ansi::write_sgr	1699	0.220449	observed
+candidate	leaf	herdr::protocol::render_ansi::write_cell	herdr::protocol::render_ansi::write_cell	1361	0.176593	observed
+candidate	leaf	herdr::protocol::render_ansi::BlitEncoder::encode_inner	herdr::protocol::render_ansi::BlitEncoder::encode_inner	1354	0.175684	observed
+candidate	leaf	herdr::protocol::render_ansi::write_sgr_colour	herdr::protocol::render_ansi::write_sgr_colour	772	0.100169	observed
+candidate	leaf	herdr::protocol::render_ansi::write_u8_decimal	herdr::protocol::render_ansi::write_u8_decimal	534	0.069288	observed
+candidate	leaf	herdr::protocol::render_ansi::write_changed_cells	herdr::protocol::render_ansi::write_changed_cells	491	0.063708	observed
+candidate	leaf	herdr::protocol::render_ansi::SgrStyleKey::from_cell	herdr::protocol::render_ansi::SgrStyleKey::from_cell	487	0.063189	observed
+candidate	leaf	herdr::protocol::render_ansi::write_sgr_modifiers	herdr::protocol::render_ansi::write_sgr_modifiers	333	0.043207	observed
+candidate	leaf	herdr::protocol::render_ansi::SgrColour::from_packed	herdr::protocol::render_ansi::SgrColour::from_packed	303	0.039315	observed
+candidate	leaf	herdr::protocol::render_ansi::write_hyperlink_if_changed	herdr::protocol::render_ansi::write_hyperlink_if_changed	235	0.030492	observed
+candidate	leaf	herdr::protocol::wire::underline_style_from_modifier	herdr::protocol::wire::underline_style_from_modifier	92	0.011937	observed
+candidate	leaf	herdr::protocol::render_ansi::build_sgr	herdr::protocol::render_ansi::build_sgr	0	0.000000	absent
+candidate	leaf	herdr::protocol::render_ansi::color_to_sgr_fg	herdr::protocol::render_ansi::color_to_sgr_fg	0	0.000000	absent
+candidate	leaf	herdr::protocol::render_ansi::modifier_to_sgr_parts	herdr::protocol::render_ansi::modifier_to_sgr_parts	0	0.000000	absent
+candidate	leaf	Other	Other (<0.5% target leaves + non-target/unresolved)	46	0.005969	grouped
+candidate	stack_family	encode_inner	BlitEncoder::encode_inner	7682	0.996756	observed
+candidate	stack_family	write_cell	write_cell	4770	0.618918	observed
+candidate	stack_family	alloc_format	alloc::fmt::format	0	0.000000	zero_samples
+candidate	stack_family	malloc_family	malloc-containing stack	100	0.012975	observed
+candidate	stack_family	realloc_family	realloc-containing stack	102	0.013235	observed
+candidate	stack_family	build_sgr	legacy build_sgr	0	0.000000	absent
+candidate	stack_family	write_sgr	direct write_sgr family	3338	0.433113	observed
+candidate	stack_family	write_sgr_colour	write_sgr_colour	772	0.100169	observed
+candidate	stack_family	write_u8_decimal	write_u8_decimal	534	0.069288	observed
+candidate	stack_family	style_key	SgrStyleKey::from_cell	487	0.063189	observed
+candidate	stack_family	write_changed_cells	write_changed_cells	491	0.063708	observed

@@ -1,0 +1,3 @@
+trace	commit	disk_size_kib	logical_bytes	bundle_manifest_sha256	file_count	samples	sample_span_seconds	resolved_samples	status
+cpu-final-master	06ca0baa12f4203c5bbad9ecadf53f9a475a52b2	11956	11617567	078ec1c77aecd44831cc48e80ca795da8eeff3601fd9ceecbeba3076c5812678	197	7894	7.895996542	7894	accepted-final
+cpu-final-candidate	d00dc4813d6803ce4efa3e9ad7b1c3533512aaff	11784	11443659	39517d50ff328a08b1dbb679d521ad51db66d239cbb11023c23e4312a0adae0b	200	7707	8.091001458	7707	accepted-final

@@ -1,0 +1,22 @@
+logical_name	category	approximate_size_bytes	sha256_or_bundle_manifest	reason_omitted	archive_present
+final-cpu-baseline	native-trace	11617567	078ec1c77aecd44831cc48e80ca795da8eeff3601fd9ceecbeba3076c5812678	Native trace contains machine metadata and local paths	yes
+final-cpu-candidate	native-trace	11443659	39517d50ff328a08b1dbb679d521ad51db66d239cbb11023c23e4312a0adae0b	Native trace contains machine metadata and local paths	yes
+cpu-pilot-baseline	native-trace	11669940	b238c3260b66268218ae16a120465dca13b75e569087d62d14fe26d83a568eaa	Pilot trace is private and not final evidence	yes
+cpu-pilot-candidate	rejected-native-trace	11578865	84f32e4d6653c72d8876ae056d185222e79021e8b90658a6da6aa482885f854f	Rejected short-span pilot contains private metadata	yes
+allocations-pilot-baseline	rejected-native-trace	10509693	282cbf972ae650798a4d32b064a3ffeb5e108c0f674be63f556dab63e70112fe	Rejected attach diagnostic contains private metadata	yes
+allocations-pilot-candidate	rejected-native-trace	10446640	774db11b0b6476b8cc1046d01dfbb92a88ba2b75cb4d25058d338018c01982dc	Rejected attach diagnostic contains private metadata	yes
+signed-allocations-baseline	native-trace	15257019	271f647d2d0948a672bda634b3cfa19eb47210bbc0ba25378b7c8e5dbdf80b85	Native trace contains machine metadata and local paths	yes
+signed-allocations-candidate	native-trace	15381401	d0cbfb3b59d9e3145a1eef43f8f88d45f9fdf192869f339f53eb95b63f2bd445	Native trace contains machine metadata and local paths	yes
+unsigned-retry-baseline	rejected-native-trace	11094216	cf58b52faa8f92249c959a83714ac45263987af9d0525f3c0c28d917c5b39e26	Rejected unsigned attach diagnostic is not evidence	yes
+unsigned-retry-candidate	rejected-native-trace	11099264	23f4efd25d78e9b55bb7536a778fd42d5f3904dfb4263d2991c9245b1ef90639	Rejected unsigned attach diagnostic is not evidence	yes
+minimal-c-attach-control	rejected-native-trace	9860235	711b0da3f53d35c0ec09fd6cddf7fec9337e64813e6c860cddf4a35470b85280	Control trace is private and records a rejected attachment	yes
+baseline-profile-probe	mach-o	33084392	bf5fb90b858a069ae8ed0bb5755829973c5a29f2ef1ca40fd7ae6a77deb832d9	Executable build product is not suitable for Git	yes
+candidate-profile-probe	mach-o	33111544	a45a5af7b2c4f584396ac4fed4c6ec8da8833e387872a820e3a4be684ebe36cb	Executable build product is not suitable for Git	yes
+baseline-dsym-dwarf	dsym	approximately-147000000	547a9553258e240539bf6df5b801d6aad19d463ead8f4bd974f27fcc7f218eed	Debug symbols expose local build metadata and are too large	yes
+candidate-dsym-dwarf	dsym	approximately-148000000	a75fa6dce0544f1777b7bc4405a23e2438efe87fa00fd6560e37e906dfb746db	Debug symbols expose local build metadata and are too large	yes
+signed-disposable-probes	mach-o	approximately-65000000	multiple-recorded	Entitled copies are disposable private profiling products	yes
+symbol-archives	native-symbols	approximately-3000000	multiple-recorded	Symbol archives may contain private paths and binary metadata	yes
+raw-build-and-process-logs	raw-logs	approximately-1528000	multiple-recorded	Raw logs can expose environment values and add no audit authority	yes
+profiling-controls-and-triggers	control-files	less-than-10000	not-recorded	Synchronization files are operational controls rather than evidence	yes
+png-chart-previews	derived-binary-previews	approximately-1098000	multiple-recorded	Public scope is SVG only	yes
+clean-ansi-encoder-commit	private-history-script	approximately-7000	not-recorded	History rewrite and force-push utility is not reproduction tooling	yes

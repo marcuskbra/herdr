@@ -1,0 +1,81 @@
+revision	category	persistent_bytes	persistent_count	transient_bytes	transient_count	total_bytes	total_count	event_count
+master	destroyed event	0	0	0	0	0	0	0
+master	All Heap & Anonymous VM	1950368	21113	1125472	18	3075840	21131	41188
+master	All Heap Allocations	1950368	21113	11360	7	1961728	21120	41166
+master	All Anonymous VM	0	0	1114112	11	1114112	11	22
+master	All VM Regions	4194304	1	1114112	11	5308416	12	23
+master	Malloc 1.50 KiB	1536	1	0	0	1536	1	1
+master	Malloc 64 Bytes	4928	77	0	0	4928	77	86
+master	Malloc 32 Bytes	15040	470	32	1	15072	471	473
+master	Malloc 16 Bytes	320320	20020	16	1	320336	20021	40028
+master	Malloc 48 Bytes	6528	136	0	0	6528	136	139
+master	Malloc 640 Bytes	3840	6	640	1	4480	7	9
+master	Malloc 128 Bytes	13184	103	0	0	13184	103	105
+master	Malloc 160 Bytes	13120	82	0	0	13120	82	84
+master	Malloc 112 Bytes	6384	57	112	1	6496	58	59
+master	Malloc 80 Bytes	5040	63	0	0	5040	63	65
+master	Malloc 96 Bytes	1920	20	0	0	1920	20	21
+master	Malloc 192 Bytes	4800	25	0	0	4800	25	28
+master	Malloc 256 Bytes	2816	11	256	1	3072	12	13
+master	Malloc 1.00 KiB	4096	4	0	0	4096	4	5
+master	Malloc 448 Bytes	2240	5	0	0	2240	5	6
+master	Malloc 5.00 KiB	5120	1	0	0	5120	1	1
+master	Malloc 512 Bytes	4096	8	0	0	4096	8	9
+master	Malloc 1.25 KiB	3840	3	0	0	3840	3	3
+master	Malloc 224 Bytes	448	2	0	0	448	2	2
+master	Malloc 4.00 KiB	16384	4	0	0	16384	4	4
+master	Malloc 896 Bytes	896	1	0	0	896	1	1
+master	Malloc 384 Bytes	1152	3	0	0	1152	3	3
+master	Malloc 320 Bytes	960	3	0	0	960	3	4
+master	pthread_mutex_t	256	4	64	1	320	5	8
+master	@autoreleasepool content	4096	1	0	0	4096	1	1
+master	Malloc 480.00 KiB	983040	2	0	0	983040	2	4
+master	Malloc 512.00 KiB	524288	1	0	0	524288	1	2
+master	VM: Allocation 96.00 KiB	0	0	786432	8	786432	8	16
+master	VM: MALLOC_SMALL	4194304	1	0	0	4194304	1	1
+master	Malloc 10.00 KiB	0	0	10240	1	10240	1	2
+master	VM: Allocation 144.00 KiB	0	0	294912	2	294912	2	4
+master	VM: Allocation 32.00 KiB	0	0	32768	1	32768	1	2
+candidate	destroyed event	0	0	0	0	0	0	0
+candidate	All Heap & Anonymous VM	1950432	21113	6368352	103	8318784	21216	41278
+candidate	All Heap Allocations	1950432	21113	5254240	92	7204672	21205	41256
+candidate	All Anonymous VM	0	0	1114112	11	1114112	11	22
+candidate	All VM Regions	4194304	1	1114112	11	5308416	12	23
+candidate	Malloc 1.50 KiB	1536	1	0	0	1536	1	1
+candidate	Malloc 64 Bytes	4928	77	320	5	5248	82	91
+candidate	Malloc 32 Bytes	15040	470	192	6	15232	476	478
+candidate	Malloc 16 Bytes	320320	20020	176	11	320496	20031	40038
+candidate	Malloc 48 Bytes	6528	136	0	0	6528	136	139
+candidate	Malloc 640 Bytes	3840	6	640	1	4480	7	9
+candidate	Malloc 128 Bytes	13184	103	640	5	13824	108	110
+candidate	Malloc 160 Bytes	13120	82	0	0	13120	82	84
+candidate	Malloc 112 Bytes	6384	57	112	1	6496	58	59
+candidate	Malloc 80 Bytes	5040	63	0	0	5040	63	65
+candidate	Malloc 96 Bytes	1920	20	0	0	1920	20	21
+candidate	Malloc 192 Bytes	4800	25	0	0	4800	25	28
+candidate	Malloc 1.00 KiB	4096	4	5120	5	9216	9	10
+candidate	Malloc 256 Bytes	3328	13	1536	6	4864	19	20
+candidate	Malloc 448 Bytes	2240	5	0	0	2240	5	6
+candidate	Malloc 5.00 KiB	5120	1	0	0	5120	1	1
+candidate	Malloc 512 Bytes	4096	8	2560	5	6656	13	14
+candidate	Malloc 1.25 KiB	3840	3	0	0	3840	3	3
+candidate	Malloc 4.00 KiB	16384	4	20480	5	36864	9	9
+candidate	Malloc 896 Bytes	896	1	0	0	896	1	1
+candidate	Malloc 384 Bytes	1152	3	0	0	1152	3	3
+candidate	Malloc 320 Bytes	960	3	0	0	960	3	4
+candidate	pthread_mutex_t	256	4	64	1	320	5	8
+candidate	@autoreleasepool content	4096	1	0	0	4096	1	1
+candidate	Malloc 480.00 KiB	983040	2	0	0	983040	2	4
+candidate	Malloc 512.00 KiB	524288	1	2621440	5	3145728	6	12
+candidate	VM: Allocation 96.00 KiB	0	0	786432	8	786432	8	16
+candidate	Malloc 2.00 KiB	0	0	10240	5	10240	5	5
+candidate	Malloc 8.00 KiB	0	0	40960	5	40960	5	5
+candidate	Malloc 16.00 KiB	0	0	81920	5	81920	5	5
+candidate	Malloc 32.00 KiB	0	0	163840	5	163840	5	5
+candidate	VM: MALLOC_SMALL	4194304	1	0	0	4194304	1	1
+candidate	Malloc 64.00 KiB	0	0	327680	5	327680	5	5
+candidate	Malloc 128.00 KiB	0	0	655360	5	655360	5	5
+candidate	Malloc 256.00 KiB	0	0	1310720	5	1310720	5	5
+candidate	Malloc 10.00 KiB	0	0	10240	1	10240	1	2
+candidate	VM: Allocation 144.00 KiB	0	0	294912	2	294912	2	4
+candidate	VM: Allocation 32.00 KiB	0	0	32768	1	32768	1	2
