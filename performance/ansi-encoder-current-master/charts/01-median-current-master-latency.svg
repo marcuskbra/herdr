@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 1040" width="1500" height="1040" role="img" aria-labelledby="title desc">
+<title id="title">Current-master ANSI encoder median latency</title>
+<desc id="desc">Four workload panels compare V1 and V3 median latency from the primary timing run.</desc>
+<style>
+text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; fill: #202428; }
+.mono { font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace; }
+.title { font-size: 29px; font-weight: 700; }
+.subtitle { font-size: 15px; fill: #59636E; }
+.panel-title { font-size: 18px; font-weight: 700; }
+.label { font-size: 14px; }
+.small { font-size: 12px; fill: #59636E; }
+.tiny { font-size: 11px; fill: #59636E; }
+.metric { font-size: 15px; font-weight: 700; }
+</style>
+<rect width="1500" height="1040" fill="#FFFFFF"/>
+<text x="70.0" y="58.0" class="title">Current-master ANSI encoder median latency</text>
+<text x="70.0" y="87.0" class="subtitle">Lower is better. Median of three independent process medians; logarithmic latency axis.</text>
+<text x="70.0" y="117.0" class="small">Grey: V1 current-master baseline. Blue: V3 candidate.</text>
+<rect x="70" y="145" width="1360" height="170" rx="8" fill="#F7F8FA"/>
+<text x="92.0" y="176.0" class="panel-title">Dense colour</text>
+<text x="1405.0" y="176.0" class="metric" text-anchor="end">17.90x faster</text>
+<line x1="355.0" y1="193.0" x2="355.0" y2="296.0" stroke="#D8DDE2"/>
+<text x="355.0" y="310.0" class="tiny" text-anchor="middle">20 us</text>
+<line x1="475.2" y1="193.0" x2="475.2" y2="296.0" stroke="#D8DDE2"/>
+<text x="475.2" y="310.0" class="tiny" text-anchor="middle">50 us</text>
+<line x1="566.1" y1="193.0" x2="566.1" y2="296.0" stroke="#D8DDE2"/>
+<text x="566.1" y="310.0" class="tiny" text-anchor="middle">100 us</text>
+<line x1="657.0" y1="193.0" x2="657.0" y2="296.0" stroke="#D8DDE2"/>
+<text x="657.0" y="310.0" class="tiny" text-anchor="middle">200 us</text>
+<line x1="777.2" y1="193.0" x2="777.2" y2="296.0" stroke="#D8DDE2"/>
+<text x="777.2" y="310.0" class="tiny" text-anchor="middle">500 us</text>
+<line x1="868.2" y1="193.0" x2="868.2" y2="296.0" stroke="#D8DDE2"/>
+<text x="868.2" y="310.0" class="tiny" text-anchor="middle">1 ms</text>
+<line x1="959.1" y1="193.0" x2="959.1" y2="296.0" stroke="#D8DDE2"/>
+<text x="959.1" y="310.0" class="tiny" text-anchor="middle">2 ms</text>
+<line x1="1050.0" y1="193.0" x2="1050.0" y2="296.0" stroke="#D8DDE2"/>
+<text x="1050.0" y="310.0" class="tiny" text-anchor="middle">4 ms</text>
+<text x="92.0" y="226.0" class="label mono">V1</text>
+<line x1="355.0" y1="221.0" x2="1009.5" y2="221.0" stroke="#5B6573" stroke-width="8"/>
+<circle cx="1009.5" cy="221.0" r="7" fill="#5B6573"/>
+<text x="1090.0" y="226.0" class="label mono">2,936,629 ns</text>
+<text x="92.0" y="276.0" class="label mono">V3</text>
+<line x1="355.0" y1="271.0" x2="631.1" y2="271.0" stroke="#1769AA" stroke-width="8"/>
+<circle cx="631.1" cy="271.0" r="7" fill="#1769AA"/>
+<text x="1090.0" y="276.0" class="label mono">164,054 ns</text>
+<rect x="70" y="339" width="1360" height="170" rx="8" fill="#F7F8FA"/>
+<text x="92.0" y="370.0" class="panel-title">Plain scroll</text>
+<text x="1405.0" y="370.0" class="metric" text-anchor="end">20.17x faster</text>
+<line x1="355.0" y1="387.0" x2="355.0" y2="490.0" stroke="#D8DDE2"/>
+<text x="355.0" y="504.0" class="tiny" text-anchor="middle">20 us</text>
+<line x1="475.2" y1="387.0" x2="475.2" y2="490.0" stroke="#D8DDE2"/>
+<text x="475.2" y="504.0" class="tiny" text-anchor="middle">50 us</text>
+<line x1="566.1" y1="387.0" x2="566.1" y2="490.0" stroke="#D8DDE2"/>
+<text x="566.1" y="504.0" class="tiny" text-anchor="middle">100 us</text>
+<line x1="657.0" y1="387.0" x2="657.0" y2="490.0" stroke="#D8DDE2"/>
+<text x="657.0" y="504.0" class="tiny" text-anchor="middle">200 us</text>
+<line x1="777.2" y1="387.0" x2="777.2" y2="490.0" stroke="#D8DDE2"/>
+<text x="777.2" y="504.0" class="tiny" text-anchor="middle">500 us</text>
+<line x1="868.2" y1="387.0" x2="868.2" y2="490.0" stroke="#D8DDE2"/>
+<text x="868.2" y="504.0" class="tiny" text-anchor="middle">1 ms</text>
+<line x1="959.1" y1="387.0" x2="959.1" y2="490.0" stroke="#D8DDE2"/>
+<text x="959.1" y="504.0" class="tiny" text-anchor="middle">2 ms</text>
+<line x1="1050.0" y1="387.0" x2="1050.0" y2="490.0" stroke="#D8DDE2"/>
+<text x="1050.0" y="504.0" class="tiny" text-anchor="middle">4 ms</text>
+<text x="92.0" y="420.0" class="label mono">V1</text>
+<line x1="355.0" y1="415.0" x2="912.7" y2="415.0" stroke="#5B6573" stroke-width="8"/>
+<circle cx="912.7" cy="415.0" r="7" fill="#5B6573"/>
+<text x="1090.0" y="420.0" class="label mono">1,404,308 ns</text>
+<text x="92.0" y="470.0" class="label mono">V3</text>
+<line x1="355.0" y1="465.0" x2="518.6" y2="465.0" stroke="#1769AA" stroke-width="8"/>
+<circle cx="518.6" cy="465.0" r="7" fill="#1769AA"/>
+<text x="1090.0" y="470.0" class="label mono">69,620 ns</text>
+<rect x="70" y="533" width="1360" height="170" rx="8" fill="#F7F8FA"/>
+<text x="92.0" y="564.0" class="panel-title">Sparse edit</text>
+<text x="1405.0" y="564.0" class="metric" text-anchor="end">3.21x faster</text>
+<line x1="355.0" y1="581.0" x2="355.0" y2="684.0" stroke="#D8DDE2"/>
+<text x="355.0" y="698.0" class="tiny" text-anchor="middle">20 us</text>
+<line x1="475.2" y1="581.0" x2="475.2" y2="684.0" stroke="#D8DDE2"/>
+<text x="475.2" y="698.0" class="tiny" text-anchor="middle">50 us</text>
+<line x1="566.1" y1="581.0" x2="566.1" y2="684.0" stroke="#D8DDE2"/>
+<text x="566.1" y="698.0" class="tiny" text-anchor="middle">100 us</text>
+<line x1="657.0" y1="581.0" x2="657.0" y2="684.0" stroke="#D8DDE2"/>
+<text x="657.0" y="698.0" class="tiny" text-anchor="middle">200 us</text>
+<line x1="777.2" y1="581.0" x2="777.2" y2="684.0" stroke="#D8DDE2"/>
+<text x="777.2" y="698.0" class="tiny" text-anchor="middle">500 us</text>
+<line x1="868.2" y1="581.0" x2="868.2" y2="684.0" stroke="#D8DDE2"/>
+<text x="868.2" y="698.0" class="tiny" text-anchor="middle">1 ms</text>
+<line x1="959.1" y1="581.0" x2="959.1" y2="684.0" stroke="#D8DDE2"/>
+<text x="959.1" y="698.0" class="tiny" text-anchor="middle">2 ms</text>
+<line x1="1050.0" y1="581.0" x2="1050.0" y2="684.0" stroke="#D8DDE2"/>
+<text x="1050.0" y="698.0" class="tiny" text-anchor="middle">4 ms</text>
+<text x="92.0" y="614.0" class="label mono">V1</text>
+<line x1="355.0" y1="609.0" x2="566.5" y2="609.0" stroke="#5B6573" stroke-width="8"/>
+<circle cx="566.5" cy="609.0" r="7" fill="#5B6573"/>
+<text x="1090.0" y="614.0" class="label mono">100,262 ns</text>
+<text x="92.0" y="664.0" class="label mono">V3</text>
+<line x1="355.0" y1="659.0" x2="413.4" y2="659.0" stroke="#1769AA" stroke-width="8"/>
+<circle cx="413.4" cy="659.0" r="7" fill="#1769AA"/>
+<text x="1090.0" y="664.0" class="label mono">31,220 ns</text>
+<rect x="70" y="727" width="1360" height="170" rx="8" fill="#F7F8FA"/>
+<text x="92.0" y="758.0" class="panel-title">Full redraw</text>
+<text x="1405.0" y="758.0" class="metric" text-anchor="end">23.93x faster</text>
+<line x1="355.0" y1="775.0" x2="355.0" y2="878.0" stroke="#D8DDE2"/>
+<text x="355.0" y="892.0" class="tiny" text-anchor="middle">20 us</text>
+<line x1="475.2" y1="775.0" x2="475.2" y2="878.0" stroke="#D8DDE2"/>
+<text x="475.2" y="892.0" class="tiny" text-anchor="middle">50 us</text>
+<line x1="566.1" y1="775.0" x2="566.1" y2="878.0" stroke="#D8DDE2"/>
+<text x="566.1" y="892.0" class="tiny" text-anchor="middle">100 us</text>
+<line x1="657.0" y1="775.0" x2="657.0" y2="878.0" stroke="#D8DDE2"/>
+<text x="657.0" y="892.0" class="tiny" text-anchor="middle">200 us</text>
+<line x1="777.2" y1="775.0" x2="777.2" y2="878.0" stroke="#D8DDE2"/>
+<text x="777.2" y="892.0" class="tiny" text-anchor="middle">500 us</text>
+<line x1="868.2" y1="775.0" x2="868.2" y2="878.0" stroke="#D8DDE2"/>
+<text x="868.2" y="892.0" class="tiny" text-anchor="middle">1 ms</text>
+<line x1="959.1" y1="775.0" x2="959.1" y2="878.0" stroke="#D8DDE2"/>
+<text x="959.1" y="892.0" class="tiny" text-anchor="middle">2 ms</text>
+<line x1="1050.0" y1="775.0" x2="1050.0" y2="878.0" stroke="#D8DDE2"/>
+<text x="1050.0" y="892.0" class="tiny" text-anchor="middle">4 ms</text>
+<text x="92.0" y="808.0" class="label mono">V1</text>
+<line x1="355.0" y1="803.0" x2="906.4" y2="803.0" stroke="#5B6573" stroke-width="8"/>
+<circle cx="906.4" cy="803.0" r="7" fill="#5B6573"/>
+<text x="1090.0" y="808.0" class="label mono">1,338,825 ns</text>
+<text x="92.0" y="858.0" class="label mono">V3</text>
+<line x1="355.0" y1="853.0" x2="490.0" y2="853.0" stroke="#1769AA" stroke-width="8"/>
+<circle cx="490.0" cy="853.0" r="7" fill="#1769AA"/>
+<text x="1090.0" y="858.0" class="label mono">55,954 ns</text>
+<text x="70.0" y="954.0" class="small">Each process: 20 warm-ups, 100 batches, 10 encodes per batch; the process is the replication unit.</text>
+<metadata>{&quot;chart&quot;: &quot;median_process_latency&quot;, &quot;summary_json_sha256&quot;: &quot;8e447693ba4bf0269849bcf8a5ecb8d5b76faabd5ab949000179cf32e4262e83&quot;}</metadata>
+<line x1="70.0" y1="986.0" x2="1430.0" y2="986.0" stroke="#D8DDE2"/>
+<text x="70.0" y="1010.0" class="small mono">V1 49e333ae  |  V3 90f12051</text>
+<text x="1430.0" y="1010.0" class="tiny mono" text-anchor="end">summary SHA-256 8e447693ba4b...</text>
+</svg>
